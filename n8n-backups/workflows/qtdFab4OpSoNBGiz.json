@@ -1,0 +1,108 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-07T12:26:26.826Z",
+  "id": "qtdFab4OpSoNBGiz",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "test ASR",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.0.188:9000/asr?encode=true&task=transcribe&output=txt",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "multipart/form-data"
+            },
+            {
+              "name": "accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "audio_file",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1000,
+        -1260
+      ],
+      "id": "dbdd05f5-90de-461f-93ef-050b820b7a34",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1480,
+        -1260
+      ],
+      "id": "9cc036da-82e1-48ca-9d90-0f59139ef3d7",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://raw.githubusercontent.com/ggerganov/whisper.cpp/refs/heads/master/samples/jfk.mp3",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1260,
+        -1260
+      ],
+      "id": "8a352593-da0b-41a2-a08c-251b3162f4ce",
+      "name": "HTTP Request1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-07T16:14:50.179Z",
+  "versionId": "597b9bbd-538f-456d-8265-e510adcfacc3"
+}
