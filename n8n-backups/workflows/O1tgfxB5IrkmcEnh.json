@@ -1,0 +1,131 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "S33",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "S33": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-30T10:57:36.899Z",
+  "id": "O1tgfxB5IrkmcEnh",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "S3 Information Extractor",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1160,
+        -560
+      ],
+      "id": "3f990991-6fe4-438b-9e09-92cd86408443",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "text": "=",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "billing compagnie",
+              "description": "Billing compagny",
+              "required": true
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "You are an expert extraction algorithm.\nOnly extract relevant information from the text.\nIf you do not know the value of an attribute asked to extract, you may omit the attribute's value."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        -560
+      ],
+      "id": "cf78e173-eb57-4efc-a2ca-587722518149",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "model": "deepseek-r1:14b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmOllama",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        -300
+      ],
+      "id": "e7536c6f-697f-4b35-be97-69ef2ebde873",
+      "name": "Ollama Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "BrmAQUYuX864p0gx",
+          "name": "http://192.168.0.52:11434"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "bucketName": "datadog",
+        "fileKey": "=Datadog/2024-01-10 MASTER (ROOT) Invoice.pdf"
+      },
+      "type": "n8n-nodes-base.s3",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        -560
+      ],
+      "id": "d48ec7a5-154a-41fd-824d-48d58c32ea01",
+      "name": "S33",
+      "credentials": {
+        "s3": {
+          "id": "pEEmBCWmBdQsEPZV",
+          "name": "S3 account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-07T18:11:14.482Z",
+  "versionId": "f7c71df4-1414-4d30-9302-f0c1d5e35ed5"
+}
