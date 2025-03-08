@@ -1,0 +1,94 @@
+{
+  "active": true,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Sentiment Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Sentiment Analysis",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-24T13:36:05.966Z",
+  "id": "iJqtMT5YEixP3mW1",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Sentiment Analysis",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -620,
+        -520
+      ],
+      "id": "17419a24-6a7f-4970-87eb-50c2fb9d60ba",
+      "name": "When chat message received",
+      "webhookId": "04584a15-1e16-44b9-afee-f4c2ca1d118f"
+    },
+    {
+      "parameters": {
+        "inputText": "Est une réponse vrai ?",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        -520
+      ],
+      "id": "292d0e36-c712-4019-aafb-027b010452ce",
+      "name": "Sentiment Analysis"
+    },
+    {
+      "parameters": {
+        "model": "deepseek-r1:14b",
+        "options": {
+          "format": "default"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        -300
+      ],
+      "id": "45dd23cf-3b1a-4537-a603-d1e5c4106478",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "BrmAQUYuX864p0gx",
+          "name": "http://192.168.0.52:11434"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-03-07T18:09:34.743Z",
+  "versionId": "cc598075-966a-4dbb-98e0-96aff34f03a5"
+}
