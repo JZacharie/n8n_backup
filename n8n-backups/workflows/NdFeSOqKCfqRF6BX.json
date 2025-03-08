@@ -1,0 +1,144 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "S3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "S3": {
+      "main": [
+        [
+          {
+            "node": "S31",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "S31": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-30T13:11:04.745Z",
+  "id": "NdFeSOqKCfqRF6BX",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "CSV",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -700
+      ],
+      "id": "76531146-a010-4722-86f8-72049f8db536",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "bucket",
+        "operation": "getAll"
+      },
+      "type": "n8n-nodes-base.s3",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        -700
+      ],
+      "id": "a86461bf-46ec-4dcc-b69d-d05f14b1c524",
+      "name": "S3",
+      "credentials": {
+        "s3": {
+          "id": "pEEmBCWmBdQsEPZV",
+          "name": "S3 account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "bucketName": "datadog",
+        "fileKey": "Datadog/2024-01 MASTER (ROOT) Billable Usage Summary.csv"
+      },
+      "type": "n8n-nodes-base.s3",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -700
+      ],
+      "id": "9f20dd8c-9e55-4ddf-b4bc-d1d5e0b99e6d",
+      "name": "S31",
+      "credentials": {
+        "s3": {
+          "id": "pEEmBCWmBdQsEPZV",
+          "name": "S3 account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        -700
+      ],
+      "id": "45d85331-8ea9-4cb0-8982-2bd4f92a6a9a",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        120,
+        -700
+      ],
+      "id": "d7764ca7-6886-4e1a-b7c3-936c4ba62876",
+      "name": "Aggregate"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-31T21:28:46.429Z",
+  "versionId": "06c5e05c-ea31-4bcd-aba8-0efba0da13ef"
+}
