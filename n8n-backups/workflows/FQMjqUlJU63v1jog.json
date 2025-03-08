@@ -1,0 +1,423 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-05T15:00:08.328Z",
+  "id": "FQMjqUlJU63v1jog",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "DataDog",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -640,
+        -240
+      ],
+      "id": "4565bd6f-6007-4b95-ada1-008f7c616511",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.datadoghq.eu/account/login",
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "_authentication_token",
+              "value": "cd51412b83bc23c96922828224af304bc36df45b"
+            },
+            {
+              "name": "username",
+              "value": "joseph.zacharie@teamwork.net"
+            },
+            {
+              "name": "password",
+              "value": "X12qvUs58CUTpcN2!"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -380,
+        -240
+      ],
+      "id": "2b2f9476-af10-4efb-bdf9-ff8430e97dbb",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "https://app.datadoghq.eu/account/usage/billable_summary",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "month",
+              "value": "2025-01"
+            },
+            {
+              "name": "include_connected_accounts",
+              "value": "false"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "application/json"
+            },
+            {
+              "name": "accept-language",
+              "value": "en,fr-FR;q=0.9,fr;q=0.8,en-US;q=0.7"
+            },
+            {
+              "name": "cookie",
+              "value": "_dd_device_id=1tpq41tema; datadog-theme=light; dogweb_v=2cb1f389e728f61ed1a324232a38adf8253584c4; intercom-device-id-x9u0q6k2=5c8555b7-1eae-4a63-a747-e200870546b1; redirector-token=4puXx/wM9xBjopcrcPQsKwQZOavPnGFpEcqD669LR1A=; __zlcmid=1Nwn36zph45K1qd; dogwebu=a49fcd30d4d57cc517228c2d18c7d4bd40899d7c; dogweb=1a17db1f41c0cb42a21cff47a5e7e154e7d37cc7ecb73c91ff6d45c9916e0902f25414f6; intercom-session-x9u0q6k2=UzE5VDU3QXdld01kbVkrZkZmVXB1blR1NG9PWGd1dFJRbno2THcxd1d1TzNHUHdYcmhZK1NUSHlrbktuaTlWTU5FcHVOcTNhYVZpelNaelVyYnh2Q1h3b1N2Sk5uOGV6TEpiZ3hrYWZRY1k9LS1FZHIxK2ZUT1BrdmpQdHJJZ0dWWlRBPT0=--7348630391361f4dedb53572c3c36e52dc444254; _dd_s=aid=q9s1myzuf9&logs=1&id=f80cc2a0-47a6-40d3-ba6d-c38357921f2b&created=1738759109526&expire=1738760248357&rum=1"
+            },
+            {
+              "name": "priority",
+              "value": "u=1, i"
+            },
+            {
+              "name": "referer",
+              "value": "https://app.datadoghq.eu/billing/usage/suborgs?suborg_summary_month=2025-01&usage_type=billable"
+            },
+            {
+              "name": "sec-ch-ua",
+              "value": "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"Google Chrome\";v=\"132\""
+            },
+            {
+              "name": "sec-ch-ua-mobile",
+              "value": "?0"
+            },
+            {
+              "name": "sec-ch-ua-platform",
+              "value": "\"Windows\""
+            },
+            {
+              "name": "sec-fetch-dest",
+              "value": "empty"
+            },
+            {
+              "name": "sec-fetch-mode",
+              "value": "cors"
+            },
+            {
+              "name": "sec-fetch-site",
+              "value": "same-origin"
+            },
+            {
+              "name": "traceparent",
+              "value": "00-0000000000000000030a07fc0b0dffe7-7e22095c001d0c4c-01"
+            },
+            {
+              "name": "tracestate",
+              "value": "dd=s:1;o:rum"
+            },
+            {
+              "name": "user-agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "x-datadog-origin",
+              "value": "rum"
+            },
+            {
+              "name": "x-datadog-parent-id",
+              "value": "9088837288730627148"
+            },
+            {
+              "name": "x-datadog-sampling-priority",
+              "value": "1"
+            },
+            {
+              "name": "x-datadog-trace-id",
+              "value": "218996310979510247"
+            },
+            {
+              "name": "x-web-ui-version",
+              "value": "35.54950138"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        -240
+      ],
+      "id": "b2edf1c4-8db8-4cde-bb3b-db46b1d14b96",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d4c41fb1-65bd-43c4-90af-bfe26bebce7f",
+              "name": "headers[\"set-cookie\"][0]",
+              "value": "={{ $json.headers[\"set-cookie\"][0] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -160,
+        -240
+      ],
+      "id": "76eaa0d0-6352-4ae8-aa42-9a601294a561",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $input.first().json.headers[\"set-cookie\"][0]\nconst result = text.split('dogwebu=')[1].split(';')[0];\nitems[0].json.cookie = result;\nreturn items;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        20,
+        -240
+      ],
+      "id": "1b10838a-52fd-46b3-a2f0-44f92452ac8d",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "url": "https://app.datadoghq.eu/api/ui/usage/chargeback_summary_report",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "month",
+              "value": "2025-10"
+            },
+            {
+              "name": "combined",
+              "value": "true"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "*/*"
+            },
+            {
+              "name": "accept-language",
+              "value": "en,fr-FR;q=0.9,fr;q=0.8,en-US;q=0.7"
+            },
+            {
+              "name": "priority",
+              "value": "u=1, i"
+            },
+            {
+              "name": "referer",
+              "value": "https://app.datadoghq.eu/billing/usage/suborgs?suborg_summary_month=2025-01&usage_type=billable"
+            },
+            {
+              "name": "sec-ch-ua",
+              "value": "\"Not(A:Brand\";v=\"99\", \"Google Chrome\";v=\"133\", \"Chromium\";v=\"133\""
+            },
+            {
+              "name": "sec-ch-ua-mobile",
+              "value": "?0"
+            },
+            {
+              "name": "sec-ch-ua-platform",
+              "value": "\"Windows\""
+            },
+            {
+              "name": "sec-fetch-dest",
+              "value": "empty"
+            },
+            {
+              "name": "sec-fetch-mode",
+              "value": "cors"
+            },
+            {
+              "name": "sec-fetch-site",
+              "value": "same-origin"
+            },
+            {
+              "name": "traceparent",
+              "value": "00-0000000000000000b6aefff07e1f22eb-72b5c2ed6f8f2107-01"
+            },
+            {
+              "name": "tracestate",
+              "value": "dd=s:1;o:rum"
+            },
+            {
+              "name": "user-agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "x-datadog-origin",
+              "value": "rum"
+            },
+            {
+              "name": "x-datadog-parent-id",
+              "value": "8265727016143102215"
+            },
+            {
+              "name": "x-datadog-sampling-priority",
+              "value": "1"
+            },
+            {
+              "name": "x-datadog-trace-id",
+              "value": "13163740169223742187"
+            },
+            {
+              "name": "cookie",
+              "value": "=_dd_device_id=21x6kd1uc0q;datadog-theme=light;dogweb_v=01ycpBmBr2hb4lhuzXhyI6FxgqTY5XD5DHp4;intercom-device-id-x9u0q6k2=48e161cb-c187-4f21-a587-3d0da0dff008;redirector-token=OQ2fo4fcqZtQa1Ui7S9jteSrjpL8q0iu2p93Jka4GFg=;navState=main-nav-collapsed;dogwebu={{ $('Code').item.json.cookie }};dogweb=b3b3d8ab1c17a7b69775a4b7f714d1cbc4e09294517c5cbcbabd47f3a4705771b0dd862c;intercom-session-x9u0q6k2=bDNha3hrdUJtYUw3NXRQc0U4emgveWxoK0tPMm80NXFQVlNvVWUwS3huV1NBdlZONzE5YkhpN0dINkJhN1U4S1VEcnc5MlY1UWdzRkEyTzNuSWV6T3NjN3JKZ2oySnFVNnRaeTNKb05kZVU9LS12R1hBbk9SQkF5ZmhSdmxvSlVRUkpnPT0=--36936719e381ddd35a738421320ada406b2a2d14;__zlcmid=1Nwn36zph45K1qd;_dd_s=aid=hk88ubnezh&logs=1&id=efc8792d-0100-4849-9b95-b6d6a38dae5b&created=1738769663180&expire=1738770638743&rum=1;"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        40
+      ],
+      "id": "098edccc-fcea-49bc-9b94-fcc4a8adcf2e",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "=data {{ $json.data }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        480,
+        40
+      ],
+      "id": "eca4e71c-0d90-4a5a-a691-4449ed336021",
+      "name": "Convert to File"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2025-03-07T18:04:56.335Z",
+      "updatedAt": "2025-03-07T18:04:56.335Z",
+      "id": "nSt3WDeZ4wT5JwU2",
+      "name": "ENV:DEV"
+    },
+    {
+      "createdAt": "2025-03-07T18:07:21.232Z",
+      "updatedAt": "2025-03-07T18:07:21.232Z",
+      "id": "1eWyovuAP6Z9pjpH",
+      "name": "Working:False"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-07T18:07:26.556Z",
+  "versionId": "46b51eea-5627-4e88-afad-2f1b4ab51411"
+}
