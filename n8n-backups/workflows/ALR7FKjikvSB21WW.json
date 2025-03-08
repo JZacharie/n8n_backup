@@ -1,0 +1,143 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get Foo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Foo": {
+      "main": [
+        [
+          {
+            "node": "randomHex",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "randomHex": {
+      "main": [
+        [
+          {
+            "node": "NocoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-08T06:14:48.664Z",
+  "id": "ALR7FKjikvSB21WW",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "NocoDB",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -980,
+        -800
+      ],
+      "id": "13b034b0-8f52-48a7-950c-2199d757c55b",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "getAll",
+        "projectId": "pm9zo9o5pk1p212",
+        "table": "m7sgmnuu6u5hxc2",
+        "returnAll": true,
+        "options": {
+          "where": "(key,eq,foo)"
+        }
+      },
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        -720,
+        -800
+      ],
+      "id": "85e2024a-ba11-43f5-9442-672aa954855a",
+      "name": "Get Foo",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "QFrzaYCOtNEfiY9N",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Génère une chaîne hexadécimale aléatoire de 32 caractères\nfunction generateRandomHex(length = 32) {\n    const characters = '0123456789abcdef';\n    let result = '';\n    for (let i = 0; i < length; i++) {\n        result += characters[Math.floor(Math.random() * characters.length)];\n    }\n    return result;\n}\n\n// Ajouter la chaîne générée dans chaque item\nfor (const item of $input.all()) {\n    item.json.randomHex = generateRandomHex();\n}\n\nreturn $input.all();\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -480,
+        -800
+      ],
+      "id": "1842c91e-4372-4ddf-b822-c4fa7c4166f5",
+      "name": "randomHex"
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "projectId": "pm9zo9o5pk1p212",
+        "table": "m7sgmnuu6u5hxc2",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "key",
+              "fieldValue": "={{ $('Get Foo').item.json.key }}"
+            },
+            {
+              "fieldName": "value",
+              "fieldValue": "={{ $json.randomHex }}"
+            },
+            {
+              "fieldName": "id",
+              "fieldValue": "={{ $json.Id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        -160,
+        -800
+      ],
+      "id": "f36cd661-ce37-4f13-a37a-53285bee33ff",
+      "name": "NocoDB",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "QFrzaYCOtNEfiY9N",
+          "name": "NocoDB Token account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-08T06:50:54.471Z",
+  "versionId": "c093cbe5-cf66-4391-8d78-d374ee933d01"
+}
