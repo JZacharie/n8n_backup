@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "GitHub": {
       "main": [
@@ -187,7 +187,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "My workflow 5",
+  "name": "Workflow Backups",
   "nodes": [
     {
       "parameters": {
@@ -490,9 +490,7 @@
         "triggerTimes": {
           "item": [
             {
-              "mode": "everyWeek",
-              "hour": 0,
-              "weekday": "6"
+              "mode": "everyHour"
             }
           ]
         }
@@ -506,7 +504,7 @@
         360
       ],
       "notesInFlow": true,
-      "notes": "Weekly backup"
+      "notes": "Hourly backup"
     },
     {
       "parameters": {},
@@ -526,7 +524,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-03-08T08:07:03.696Z",
-  "versionId": "b54d40fc-818b-45eb-9ec0-359cb65f7f01"
+  "triggerCount": 1,
+  "updatedAt": "2025-03-08T08:09:23.717Z",
+  "versionId": "af183f5e-119c-4f58-85e4-8fe4d03e804b"
 }
