@@ -1,0 +1,106 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "Gmail1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-11T09:10:52.001Z",
+  "id": "3LdiuxgmSp1QuhNX",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Messagerie Free",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 1,
+        "simple": false,
+        "filters": {
+          "q": "vms@free-mobile.fr "
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -220,
+        -180
+      ],
+      "id": "e2c2a788-2aad-469c-86e9-74b1533e6d4c",
+      "name": "Gmail",
+      "webhookId": "55398514-711b-4d6a-985c-0e1c2a1d20bb",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "H0l5mvcdVEzHgawi",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -440,
+        -180
+      ],
+      "id": "a5e1e6fe-0e78-490b-b687-c14091ffd572",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "messageId": "={{ $json.id }}",
+        "simple": false,
+        "options": {
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        20,
+        -180
+      ],
+      "id": "7a252495-03b6-446d-8b8d-87fb8310b0cd",
+      "name": "Gmail1",
+      "webhookId": "df552f8c-20c3-4bbe-b753-ef464ce4fe17",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "H0l5mvcdVEzHgawi",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-11T09:33:08.070Z",
+  "versionId": "6cf624c1-63bd-4645-bcad-2f0e07c1b3ba"
+}
