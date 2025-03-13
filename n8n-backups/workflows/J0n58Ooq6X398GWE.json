@@ -629,6 +629,54 @@
       ],
       "id": "3d15335b-0357-4dd9-88f7-7112f7fdb1ae",
       "name": "Email Agent"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1200,
+        920
+      ],
+      "id": "63753550-b118-4d53-b11a-3765fb0888b0",
+      "name": "Gmail",
+      "webhookId": "cc379d2b-81f4-46ab-b28d-bd3486dc75d9",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "H0l5mvcdVEzHgawi",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "GoogleContact",
+        "workflowId": {
+          "__rl": true,
+          "value": "2UmQCHenGxf3lkbd",
+          "mode": "list",
+          "cachedResultName": "My Sub-Workflow 1"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        1400,
+        940
+      ],
+      "id": "88dbd79b-d667-4407-ad01-a54052058ff8",
+      "name": "GoogleContact"
     }
   ],
   "pinData": {},
@@ -645,6 +693,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-03-13T18:41:34.722Z",
-  "versionId": "7ee8e79a-d80a-4704-b42c-d9b0db7bdb10"
+  "updatedAt": "2025-03-13T19:40:59.874Z",
+  "versionId": "5232517e-eb71-4f58-ad94-914a7d3cc46a"
 }
