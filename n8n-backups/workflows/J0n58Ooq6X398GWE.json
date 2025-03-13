@@ -1,0 +1,650 @@
+{
+  "active": false,
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qonto Bank Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ThriveCart Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Contacts": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-13T18:41:34.722Z",
+  "id": "J0n58Ooq6X398GWE",
+  "meta": null,
+  "name": "WhatsApp",
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        280,
+        660
+      ],
+      "id": "a3f6441c-fa79-4b51-944e-df2dfbda64b3",
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "options": {
+          "systemMessage": "=# Rôle  \nL’agent principal est un **super agent** chargé de gérer et de coordonner plusieurs sous-agents spécialisés. Il permet d’exécuter des tâches variées en déléguant les requêtes aux agents appropriés.\nAujourd'hui nous sommes le {{ $now }}\n\n---\n\n# Scope  \nL’agent principal peut :  \n- Accéder aux informations bancaires via **Qonto Bank Agent**  \n- Récupérer des transactions et ventes via **ThriveCart Agent**  \n- Gérer les e-mails (lecture, envoi, réponse, archivage) via **Gmail Agent**  \n- Gérer l’agenda et la disponibilité via **Calendar Agent**  \n- Accéder aux contacts Google via **Google Contacts**  \n- Gérer les tâches et vidéos via **Notion Agent**  \n\nL’agent principal ne traite pas directement les requêtes mais les distribue aux agents spécialisés.\n\n---\n\n# Sous-agents et capacités  \n\n## Qonto Bank Agent\nGère les interactions avec la banque **Qonto**.  \n**Utilisation :** Toute requête liée aux finances, paiements et transactions bancaires.  \n\n## ThriveCart Agent\n\nGère les transactions liées aux ventes de formations ou d’autres produits.\nUtilisation : Vérification des paiements et des commandes clients.\n\n## Gmail Agent\n\nGère les e-mails (recherche, envoi, réponse, archivage).\nQuand tu veux envoyer des emails dis le à l'agent explicitement\nUtilisation : Consultation et gestion de la boîte mail.\n\n## Calendar Agent\n\nGère l’agenda et la disponibilité.\nUtilisation : Planifier des événements, vérifier la disponibilité, modifier un rendez-vous.\n\n## Google Contacts\n\nPermet d’accéder aux contacts enregistrés.\nUtilisation : Rechercher des informations sur un contact.\n\n## Notion Agent\n\nGère les to-dos et les idées de vidéos sur Notion.\nUtilisation : Ajouter, rechercher ou modifier des tâches et des vidéos.\n\n# Format des réponses\n\t•\tRéponses claires et précises\n\t•\tStructuration en listes si nécessaire\n\t•\tDonnées organisées pour une meilleure lisibilité\n\n# Contraintes\n\t•\tL’agent principal ne traite pas directement les requêtes mais distribue aux agents spécialisés\n\t•\tChaque sous-agent a ses propres limitations et accès restreints\n\t•\tL’agent principal ne demande jamais d’informations sensibles comme des mots de passe\n\t•\tIl ne faut pas haluciner, donc n'hésites pas à demander des informations de clarification si besoin.\n\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        740,
+        120
+      ],
+      "id": "b0ab776a-782f-4b26-a7fb-472b9c5b442e",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "name": "qonto_bank_agent",
+        "description": "Call this tool to get any information or to do anything regarding my bank which is named Qonto.",
+        "workflowId": {
+          "__rl": true,
+          "value": "84yoaxDH7aMI1tKA",
+          "mode": "list",
+          "cachedResultName": "bank_qonto"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('query', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "query"
+          ],
+          "schema": [
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        640,
+        660
+      ],
+      "id": "9cf9678f-3c5f-4529-b435-8ad7f653abac",
+      "name": "Qonto Bank Agent"
+    },
+    {
+      "parameters": {
+        "name": "thrivecart_agent",
+        "description": "Call this agent whenever you neeed any information about a clients buying a course or any transaction information about a client.",
+        "workflowId": {
+          "__rl": true,
+          "value": "bUUFGoKIGWQWdA7P",
+          "mode": "list",
+          "cachedResultName": "ThriveCart Agent"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "query": "={{ $fromAI('query', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "query"
+          ],
+          "schema": [
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        800,
+        660
+      ],
+      "id": "26e72ebf-a877-4bcb-ba93-b8cb9675c24c",
+      "name": "ThriveCart Agent"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ]
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -440,
+        60
+      ],
+      "id": "a1e595fd-a0d5-4c23-a3ec-b6ba64d7364f",
+      "name": "WhatsApp Trigger",
+      "webhookId": "93ef3b10-62fb-487f-bdd3-0af498493fa1"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "496335473567208",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.messages[0].from }}",
+        "textBody": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        120
+      ],
+      "id": "9b577548-73e9-4759-bbc4-6312891213d5",
+      "name": "WhatsApp Message",
+      "webhookId": "85a8cf4f-eeea-43d7-8386-224d3f4249a5"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('WhatsApp Trigger').item.json.messages[0].from }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        460,
+        660
+      ],
+      "id": "5e646f17-1130-4e38-ac4c-09f79569f450",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "name": "Calendar_tool",
+        "description": "Call this tool whenever you need anything to do with my agenda.",
+        "workflowId": {
+          "__rl": true,
+          "value": "kn9oXMlCH8bxWuSj",
+          "mode": "list",
+          "cachedResultName": "calendar agent"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('query', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "query"
+          ],
+          "schema": [
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        660
+      ],
+      "id": "2974ea4a-7ae0-4448-b7a4-f8b6f2f2f877",
+      "name": "Calendar Agent"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 20,
+        "fields": [
+          "*"
+        ],
+        "useQuery": true,
+        "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Query', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.googleContactsTool",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        660
+      ],
+      "id": "b6760f16-69ab-4d79-bc4e-9cbcaf73f06f",
+      "name": "Google Contacts"
+    },
+    {
+      "parameters": {
+        "name": "notion_tool",
+        "description": "CAll this agent whenever you need to do anything with todos, or videos.",
+        "workflowId": {
+          "__rl": true,
+          "value": "b7PHwz2RYV2tNWgi",
+          "mode": "list",
+          "cachedResultName": "Notion Agent"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('query', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "query"
+          ],
+          "schema": [
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        660
+      ],
+      "id": "61471f37-a4d6-400b-8b2a-76f90fd3b608",
+      "name": "Notion Agent"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.messages[0].type }}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "81dbc914-1983-4f35-b671-728ccd26c607"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "text"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "cd17a39c-1e49-49d3-89f9-f09e7cf6a52e",
+                    "leftValue": "={{ $json.messages[0].type }}",
+                    "rightValue": "audio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "audio"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -280,
+        60
+      ],
+      "id": "c5d9c1a9-350c-4466-9fa3-44b5d2e5cfc1",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $('WhatsApp Trigger').item.json.messages[0].audio.id }}"
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        0,
+        160
+      ],
+      "id": "c0f19ccd-7432-4f40-b313-dc076d9296fa",
+      "name": "WhatsApp Business Cloud",
+      "webhookId": "7fc33a78-a7b1-457d-a7f0-e11ae8fa458c"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        180,
+        160
+      ],
+      "id": "13f89998-3aaa-4b5e-a3f8-4c63f20324e9",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        340,
+        160
+      ],
+      "id": "b5b380d1-83f0-401d-af50-5aaf758f4b4f",
+      "name": "OpenAI"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2f65952b-56ac-416b-af00-15f069f109c6",
+              "name": "text",
+              "value": "={{ $('WhatsApp Trigger').item.json.messages[0].text.body }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4eab61b1-8c03-4138-8420-ffeef02f340e",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "name": "email_agent",
+        "description": "Call this agent to get my emails, write email.\nAsk this agent with action you want to do like \nSend, reply, serach or whatever",
+        "workflowId": {
+          "__rl": true,
+          "value": "iA4v1mdWETVPO4nr",
+          "mode": "list",
+          "cachedResultName": "Email Agent"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('query', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        940,
+        700
+      ],
+      "id": "3d15335b-0357-4dd9-88f7-7112f7fdb1ae",
+      "name": "Email Agent"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-03-13T18:40:59.010Z",
+      "updatedAt": "2025-03-13T18:40:59.010Z",
+      "id": "veYcb4rZrViSXbq0",
+      "name": "agent"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-13T18:41:34.722Z",
+  "versionId": "7ee8e79a-d80a-4704-b42c-d9b0db7bdb10"
+}
