@@ -73,7 +73,13 @@
     },
     "Audio Task Message": {
       "main": [
-        []
+        [
+          {
+            "node": "NocoDB1",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Ollama Chat Model": {
@@ -119,11 +125,6 @@
         [
           {
             "node": "Telegram",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "NocoDB",
             "type": "main",
             "index": 0
           }
@@ -352,8 +353,8 @@
       "name": "Audio Task Message",
       "type": "n8n-nodes-base.telegram",
       "position": [
-        2400,
-        -40
+        2360,
+        -100
       ],
       "typeVersion": 1.2,
       "webhookId": "98ac4289-1814-48a0-8417-97c2e0343216",
@@ -497,16 +498,34 @@
     {
       "parameters": {
         "authentication": "nocoDbApiToken",
-        "operation": "create"
+        "operation": "create",
+        "projectId": "pqq0r9u8onno06m",
+        "table": "mfxe695ekaxut0k",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "key",
+              "fieldValue": "={{ $('Telegram Trigger1').item.json.message.chat.id }}"
+            },
+            {
+              "fieldName": "value",
+              "fieldValue": "={{ $json.randomHex }}"
+            },
+            {
+              "fieldName": "id",
+              "fieldValue": "={{ $json.output }}"
+            }
+          ]
+        }
       },
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        2680,
-        180
+        2600,
+        -100
       ],
-      "id": "8f87e656-7dda-41f3-808b-42df3efcc259",
-      "name": "NocoDB",
+      "id": "5f040001-312a-499f-9d03-c36f0d9b592e",
+      "name": "NocoDB1",
       "credentials": {
         "nocoDbApiToken": {
           "id": "QFrzaYCOtNEfiY9N",
@@ -535,6 +554,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-14T18:50:50.986Z",
-  "versionId": "a1442f16-4a54-4f96-9256-72a37091dcc7"
+  "updatedAt": "2025-03-14T19:25:09.814Z",
+  "versionId": "ba34f73d-ff80-4324-b0ba-8960b1400ebf"
 }
