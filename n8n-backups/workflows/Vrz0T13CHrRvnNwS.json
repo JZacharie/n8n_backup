@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Get Audio File": {
       "main": [
@@ -115,6 +115,17 @@
           {
             "node": "AI Agent",
             "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -435,6 +446,17 @@
       ],
       "id": "96f70504-3d5c-4862-9033-754bfbfb2b26",
       "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-mcp.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        1820,
+        100
+      ],
+      "id": "138057ce-bb4e-4fa2-a3e0-ce38952570d7",
+      "name": "MCP Client"
     }
   ],
   "pinData": {},
@@ -457,6 +479,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-07T18:05:28.745Z",
+  "updatedAt": "2025-03-14T04:06:19.330Z",
   "versionId": "772ee81b-f81b-4703-8f80-2c0c2c964e17"
 }
