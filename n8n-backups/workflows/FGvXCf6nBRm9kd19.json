@@ -1,0 +1,369 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Calendar1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-15T15:44:53.445Z",
+  "id": "FGvXCf6nBRm9kd19",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "calendar_tools",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        -160
+      ],
+      "id": "50948935-43ee-4cdc-a3ee-d3a20fb719a2",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -420,
+        -320
+      ],
+      "id": "733c1734-f517-4026-b4f0-1cd8f07ce827",
+      "name": "When chat message received",
+      "webhookId": "17765e75-e6e8-4503-afbd-7bd93542f0d3"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Agis comme un assistant intelligent pour gérer le calendrier Gmail de joseph@zacharie.org. Utilise l'outil 'currentDate' pour connaître la date actuelle. Planifie, modifie ou annule des événements selon les instructions fournies, en respectant les informations existantes et en évitant les doublons. Si une demande est incomplète ou ambiguë, demande des précisions avant d'agir. Fournis des réponses claires, concises et pertinentes."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        100,
+        -220
+      ],
+      "id": "60ba7104-ccd9-41f2-b23c-92c840a59942",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "llama3.1:latest",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        -220,
+        60
+      ],
+      "id": "83043a08-b58c-49f5-a9a8-ec28cdf49413",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "BrmAQUYuX864p0gx",
+          "name": "http://192.168.0.52:11434"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"chatInput\": \"Peux tu lister mes 10 derniers mail ?\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -440,
+        -120
+      ],
+      "id": "e3051d25-7f4d-4b53-827b-726c2c9f7e7f",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.output }}",
+        "options": {
+          "systemMessage": "=Traduis en français uniquement si nécessaire. Si le texte est déjà en français, ne le modifie pas. Ne précise pas qu'il s'agit d'une traduction et ne donne que le texte final: \n {{ $json.output }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        680,
+        -220
+      ],
+      "id": "39030238-a955-41f2-9d2c-a5d80e8a680f",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": "llama3.1:latest",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        640,
+        80
+      ],
+      "id": "9fca59e8-36f6-49e1-a958-9194c96169ce",
+      "name": "Ollama Chat Model1",
+      "credentials": {
+        "ollamaApi": {
+          "id": "BrmAQUYuX864p0gx",
+          "name": "http://192.168.0.52:11434"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "1126574004",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1100,
+        -220
+      ],
+      "id": "00f8472b-590e-4c8b-bef9-8d278806d820",
+      "name": "Telegram",
+      "webhookId": "4d64f4f0-f61b-4e37-bfa5-f702caa0acef",
+      "credentials": {
+        "telegramApi": {
+          "id": "GhwKUaLtPji8otlc",
+          "name": "Telegram account Aquabot"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        40
+      ],
+      "id": "77fa7b39-6a85-457d-ba0a-5a6e5c287c69",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "joseph@zacharie.org",
+          "mode": "list",
+          "cachedResultName": "joseph@zacharie.org"
+        },
+        "additionalFields": {
+          "description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+          "location": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Location', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        460,
+        40
+      ],
+      "id": "0acbb40d-e23c-4a26-8d4d-b6b87f3b26c7",
+      "name": "Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "9POwnJ7v0e7x9Dlz",
+          "name": "Google Calendar Joseph"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "joseph@zacharie.org",
+          "mode": "list",
+          "cachedResultName": "joseph@zacharie.org"
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        40
+      ],
+      "id": "969ac404-739b-4612-8a93-ea1edf025792",
+      "name": "Google Calendar1",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "9POwnJ7v0e7x9Dlz",
+          "name": "Google Calendar Joseph"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dateTimeTool",
+      "typeVersion": 2,
+      "position": [
+        160,
+        60
+      ],
+      "id": "23a0c48e-572b-4675-a288-6689d93a4183",
+      "name": "Date & Time"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-03-07T18:04:56.335Z",
+      "updatedAt": "2025-03-07T18:04:56.335Z",
+      "id": "nSt3WDeZ4wT5JwU2",
+      "name": "ENV:DEV"
+    },
+    {
+      "createdAt": "2025-03-15T05:50:02.764Z",
+      "updatedAt": "2025-03-15T05:50:02.764Z",
+      "id": "oyzGe4lzgJMoyqis",
+      "name": "tool:mail"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2025-03-15T15:58:03.250Z",
+  "versionId": "0d5c1e47-a199-40d4-ae56-21cfd84d889f"
+}
