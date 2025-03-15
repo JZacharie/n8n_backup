@@ -141,17 +141,6 @@
           }
         ]
       ]
-    },
-    "Call n8n Workflow Tool": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "createdAt": "2025-03-07T12:43:18.980Z",
@@ -181,7 +170,7 @@
       "credentials": {
         "telegramApi": {
           "id": "GhwKUaLtPji8otlc",
-          "name": "Telegram account"
+          "name": "Telegram account Aquabot"
         }
       }
     },
@@ -202,7 +191,7 @@
       "credentials": {
         "telegramApi": {
           "id": "GhwKUaLtPji8otlc",
-          "name": "Telegram account"
+          "name": "Telegram account Aquabot"
         }
       }
     },
@@ -319,7 +308,7 @@
       "credentials": {
         "telegramApi": {
           "id": "GhwKUaLtPji8otlc",
-          "name": "Telegram account"
+          "name": "Telegram account Aquabot"
         }
       }
     },
@@ -383,7 +372,7 @@
       "credentials": {
         "telegramApi": {
           "id": "GhwKUaLtPji8otlc",
-          "name": "Telegram account"
+          "name": "Telegram account Aquabot"
         }
       }
     },
@@ -515,7 +504,7 @@
       "credentials": {
         "telegramApi": {
           "id": "GhwKUaLtPji8otlc",
-          "name": "Telegram account"
+          "name": "Telegram account Aquabot"
         }
       }
     },
@@ -559,17 +548,6 @@
       ],
       "id": "250ce638-bde8-40f8-9c7f-11e28031d017",
       "name": "Simple Memory"
-    },
-    {
-      "parameters": {},
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
-      "position": [
-        1920,
-        160
-      ],
-      "id": "c808bbda-677d-437c-9f0f-bc6b42114a97",
-      "name": "Call n8n Workflow Tool"
     }
   ],
   "pinData": {},
@@ -592,6 +570,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-15T05:49:20.616Z",
-  "versionId": "d86fe8dc-ae7d-4410-b7e3-61dd1474e246"
+  "updatedAt": "2025-03-15T13:58:20.785Z",
+  "versionId": "544c196a-9e9d-4f96-9851-01164aabb52d"
 }
