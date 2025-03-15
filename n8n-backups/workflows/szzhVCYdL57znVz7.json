@@ -1,0 +1,101 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "setEnvDev",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NocoDB getSecrets": {
+      "main": [
+        []
+      ]
+    },
+    "setEnvDev": {
+      "main": [
+        [
+          {
+            "node": "NocoDB getSecrets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-15T06:43:19.958Z",
+  "id": "szzhVCYdL57znVz7",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "getSecrets",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -780,
+        -280
+      ],
+      "id": "26a87dc9-f36c-4b9f-bd4a-8a8ad40b110d",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "getAll",
+        "projectId": "pqq0r9u8onno06m",
+        "table": "mfxe695ekaxut0k",
+        "returnAll": true,
+        "options": {
+          "where": "=(type,eq,pam)~and(key,eq,login)~and(env,eq,{{ $json.env }})"
+        }
+      },
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        -260,
+        -280
+      ],
+      "id": "347ead4d-5d5f-4bfe-9acd-18693bd61836",
+      "name": "NocoDB getSecrets",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "QFrzaYCOtNEfiY9N",
+          "name": "https://nocodb.p.zacharie.org"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"env\": \"dev\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -520,
+        -280
+      ],
+      "id": "d40adf1b-8363-4159-9c96-b343b57caf5b",
+      "name": "setEnvDev"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-15T06:55:10.953Z",
+  "versionId": "08af4ca6-3ac7-44e9-825e-b276f139a89c"
+}
