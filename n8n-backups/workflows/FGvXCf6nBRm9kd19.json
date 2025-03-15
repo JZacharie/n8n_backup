@@ -16,7 +16,7 @@
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "Date & Time1",
             "type": "main",
             "index": 0
           }
@@ -111,12 +111,12 @@
         ]
       ]
     },
-    "Date & Time": {
-      "ai_tool": [
+    "Date & Time1": {
+      "main": [
         [
           {
             "node": "AI Agent",
-            "type": "ai_tool",
+            "type": "main",
             "index": 0
           }
         ]
@@ -148,8 +148,8 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.1,
       "position": [
-        -420,
-        -320
+        -620,
+        -340
       ],
       "id": "733c1734-f517-4026-b4f0-1cd8f07ce827",
       "name": "When chat message received",
@@ -157,15 +157,17 @@
     },
     {
       "parameters": {
+        "promptType": "define",
+        "text": "={{ $('When chat message received').item.json.chatInput }}",
         "options": {
-          "systemMessage": "Agis comme un assistant intelligent pour gérer le calendrier Gmail de joseph@zacharie.org. Utilise l'outil 'currentDate' pour connaître la date actuelle. Planifie, modifie ou annule des événements selon les instructions fournies, en respectant les informations existantes et en évitant les doublons. Si une demande est incomplète ou ambiguë, demande des précisions avant d'agir. Fournis des réponses claires, concises et pertinentes."
+          "systemMessage": "=Agis comme un assistant intelligent pour gérer le calendrier Gmail de joseph@zacharie.org. Nous sommes le {{ $json.currentDate }}. Consulte, Planifie, modifie ou annule des événements selon les instructions fournies, en respectant les informations existantes et en évitant les doublons. Si une demande est incomplète ou ambiguë, demande des précisions avant d'agir. Fournis des réponses claires, concises et pertinentes."
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.8,
       "position": [
-        100,
-        -220
+        80,
+        -260
       ],
       "id": "60ba7104-ccd9-41f2-b23c-92c840a59942",
       "name": "AI Agent"
@@ -178,7 +180,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
       "typeVersion": 1,
       "position": [
-        -220,
+        -280,
         60
       ],
       "id": "83043a08-b58c-49f5-a9a8-ec28cdf49413",
@@ -199,7 +201,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -440,
+        -500,
         -120
       ],
       "id": "e3051d25-7f4d-4b53-827b-726c2c9f7e7f",
@@ -271,8 +273,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        0,
-        40
+        -60,
+        60
       ],
       "id": "77fa7b39-6a85-457d-ba0a-5a6e5c287c69",
       "name": "Simple Memory"
@@ -293,7 +295,7 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        460,
+        420,
         40
       ],
       "id": "0acbb40d-e23c-4a26-8d4d-b6b87f3b26c7",
@@ -313,12 +315,13 @@
           "mode": "list",
           "cachedResultName": "joseph@zacharie.org"
         },
+        "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        320,
+        180,
         40
       ],
       "id": "969ac404-739b-4612-8a93-ea1edf025792",
@@ -334,14 +337,14 @@
       "parameters": {
         "options": {}
       },
-      "type": "n8n-nodes-base.dateTimeTool",
+      "type": "n8n-nodes-base.dateTime",
       "typeVersion": 2,
       "position": [
-        160,
-        60
+        -300,
+        -320
       ],
-      "id": "23a0c48e-572b-4675-a288-6689d93a4183",
-      "name": "Date & Time"
+      "id": "c11406d1-cdbd-4514-9641-cf798983dd76",
+      "name": "Date & Time1"
     }
   ],
   "pinData": {},
@@ -364,6 +367,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-03-15T15:58:03.250Z",
-  "versionId": "0d5c1e47-a199-40d4-ae56-21cfd84d889f"
+  "updatedAt": "2025-03-15T16:30:19.083Z",
+  "versionId": "866d6a3f-3d97-4bee-9599-7f4df68a38ba"
 }
