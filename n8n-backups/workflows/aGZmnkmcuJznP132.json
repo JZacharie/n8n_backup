@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
@@ -131,7 +131,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.8,
       "position": [
-        40,
+        100,
         -220
       ],
       "id": "a3f588e3-9256-4cef-98db-45854e7fd5d6",
@@ -168,7 +168,7 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        120,
+        240,
         60
       ],
       "id": "88443332-6563-49bc-8afd-aaa60b598431",
@@ -237,7 +237,9 @@
       "parameters": {
         "chatId": "1126574004",
         "text": "={{ $json.output }}",
-        "additionalFields": {}
+        "additionalFields": {
+          "appendAttribution": false
+        }
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
@@ -275,7 +277,7 @@
       "name": "tool:mail"
     }
   ],
-  "triggerCount": 0,
-  "updatedAt": "2025-03-15T13:57:50.381Z",
-  "versionId": "a8a41cb2-ccb2-4c0a-b691-8fe628230f53"
+  "triggerCount": 2,
+  "updatedAt": "2025-03-15T14:01:41.815Z",
+  "versionId": "2ee7f721-42f1-4742-93f7-c2cf84048a2d"
 }
