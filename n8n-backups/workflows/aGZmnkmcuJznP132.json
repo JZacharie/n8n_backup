@@ -1,0 +1,187 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail joseph@zacharie.org": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-15T05:49:50.101Z",
+  "id": "aGZmnkmcuJznP132",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "mail_tools",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        -160
+      ],
+      "id": "15c3b6cb-80e3-49e4-af73-de73f0ec2e7b",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -420,
+        -320
+      ],
+      "id": "142a5603-7546-4cf6-8a09-499c4d3b5d25",
+      "name": "When chat message received",
+      "webhookId": "965d58ce-b235-4e22-9c55-00330942aebc"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a helpful assistant:\n\nYou have a tool to allow read mail."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        40,
+        -220
+      ],
+      "id": "a3f588e3-9256-4cef-98db-45854e7fd5d6",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "llama3.1:latest",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        60
+      ],
+      "id": "8af1fc70-07a0-4fd0-a360-ed9e548ca152",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "BrmAQUYuX864p0gx",
+          "name": "http://192.168.0.52:11434"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 3,
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        340,
+        40
+      ],
+      "id": "88443332-6563-49bc-8afd-aaa60b598431",
+      "name": "Gmail joseph@zacharie.org",
+      "webhookId": "18e5671f-feae-4704-b3ae-3d9fdb72cdb0",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "H0l5mvcdVEzHgawi",
+          "name": "Gmail joseph@zacharie.org"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"chatInput\": \"Peux tu lister mes 3 derniers mail ?\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -400,
+        -60
+      ],
+      "id": "42cc30a2-a2aa-42f2-83f1-930e47388ea4",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-03-07T18:04:56.335Z",
+      "updatedAt": "2025-03-07T18:04:56.335Z",
+      "id": "nSt3WDeZ4wT5JwU2",
+      "name": "ENV:DEV"
+    },
+    {
+      "createdAt": "2025-03-15T05:50:02.764Z",
+      "updatedAt": "2025-03-15T05:50:02.764Z",
+      "id": "oyzGe4lzgJMoyqis",
+      "name": "tool:mail"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-15T05:59:11.083Z",
+  "versionId": "8c133e9d-7c0b-4787-8a46-e112dc1e7d01"
+}
