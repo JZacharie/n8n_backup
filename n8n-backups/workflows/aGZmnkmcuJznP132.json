@@ -88,6 +88,17 @@
           }
         ]
       ]
+    },
+    "Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-03-15T05:49:50.101Z",
@@ -125,7 +136,7 @@
     {
       "parameters": {
         "options": {
-          "systemMessage": "You are a helpful assistant:\nYou have a tool to allow read mail.\n"
+          "systemMessage": "Rôle : Tu es un assistant automatisé chargé de gérer les e-mails via Gmail.\n\nInstructions :\n\nLecture des e-mails :\nIdentifie les e-mails importants ou urgents en fonction de mots-clés (ex. : \"urgent\", \"relance\", \"échéance\", etc.).\nRésume les e-mails lus en précisant :\nExpéditeur\n\nObjet\n\nDate de réception\n\nContenu résumé en quelques phrases\n\nRédaction et envoi des e-mails :\nRédige les réponses avec un ton professionnel et clair.\nUtilise les informations fournies pour structurer l'e-mail de manière logique (objet, introduction, corps du message, conclusion).\n\nFormat attendu pour la lecture :\n\nExpéditeur : [Nom de l'expéditeur]\nObjet : [Texte de l'objet]\nDate de réception : [Date et heure]\nRésumé : [Résumé du contenu]\nFormat attendu pour la rédaction :\n\nObjet : [Texte de l'objet]\nCorps de l'e-mail : [Texte du message]\n\nTermine chaque e-mail par cette signature :\nCordialement,\nJoseph ZACHARIE\n\nExemple d'entrée :\n\nLire les derniers e-mails contenant \"urgent\" dans l'objet.\nRédiger un e-mail de relance concernant notre rendez-vous.\nExemple de sortie attendue (lecture) :\nExpéditeur : Marie Dupont\nObjet : Urgent - Dossier à finaliser\nDate de réception : 15 mars 2025 à 09h30\nRésumé : Marie demande une confirmation sur la validation du dossier avant 17h aujourd'hui.\n\nExemple de sortie attendue (rédaction) :\nObjet : Relance de notre rendez-vous\n\nBonjour Marie,\n\nJe me permets de vous relancer concernant notre rendez-vous prévu le 20 mars à 14h.\n\nCordialement,\nJoseph ZACHARIE"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -168,7 +179,7 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        240,
+        340,
         60
       ],
       "id": "88443332-6563-49bc-8afd-aaa60b598431",
@@ -190,8 +201,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -400,
-        -80
+        -440,
+        -120
       ],
       "id": "42cc30a2-a2aa-42f2-83f1-930e47388ea4",
       "name": "Edit Fields"
@@ -201,7 +212,7 @@
         "promptType": "define",
         "text": "={{ $json.output }}",
         "options": {
-          "systemMessage": "=Traduit en français, ne dis pas que c'est un traduction, ne donne que la traducation:\n {{ $json.output }}"
+          "systemMessage": "=Traduis en français uniquement si nécessaire. Si le texte est déjà en français, ne le modifie pas. Ne précise pas qu'il s'agit d'une traduction et ne donne que le texte final: \n {{ $json.output }}"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -256,6 +267,29 @@
           "name": "Telegram account Aquabot"
         }
       }
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', `Don't forger to add the signature: \nCordialement\nAssistant automatique de Joseph ZACHARIE\n\nMettre en forme le message.`, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        180,
+        60
+      ],
+      "id": "b15b6fbb-4ba4-4141-b59f-5b8bd980dc1a",
+      "name": "Gmail",
+      "webhookId": "dbb89686-5d89-4690-a23d-d89f3c0ea2a8",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "H0l5mvcdVEzHgawi",
+          "name": "Gmail joseph@zacharie.org"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -278,6 +312,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-03-15T14:01:41.815Z",
-  "versionId": "2ee7f721-42f1-4742-93f7-c2cf84048a2d"
+  "updatedAt": "2025-03-15T15:44:30.240Z",
+  "versionId": "4e706967-747e-4585-a8a5-2803973d2695"
 }
