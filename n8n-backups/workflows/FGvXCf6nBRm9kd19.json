@@ -47,7 +47,13 @@
     },
     "AI Agent": {
       "main": [
-        []
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Ollama Chat Model1": {
@@ -107,7 +113,13 @@
     },
     "Simple Memory": {
       "ai_memory": [
-        []
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -329,7 +341,7 @@
       "typeVersion": 1.3,
       "position": [
         -20,
-        80
+        40
       ],
       "id": "2ab021df-715f-4a97-b092-d400320b9f33",
       "name": "Simple Memory"
@@ -355,6 +367,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-03-16T10:53:15.201Z",
-  "versionId": "9690b12b-7554-4342-8983-100d6faf6e74"
+  "updatedAt": "2025-03-16T11:08:12.723Z",
+  "versionId": "88d42a7e-3529-4e8a-9efc-fa9e7e0895fc"
 }
