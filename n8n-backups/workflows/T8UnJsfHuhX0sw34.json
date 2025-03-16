@@ -6,17 +6,6 @@
         []
       ]
     },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Calendar AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Window Buffer Memory": {
       "ai_memory": [
         [
@@ -60,12 +49,24 @@
           }
         ]
       ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Calendar AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-03-15T16:34:07.310Z",
   "id": "T8UnJsfHuhX0sw34",
   "meta": {
-    "templateId": "2703"
+    "templateId": "2703",
+    "templateCredsSetupCompleted": true
   },
   "name": "AI Agent : Google calendar assistant using OpenAI",
   "nodes": [
@@ -82,20 +83,6 @@
       ],
       "webhookId": "5308edc9-738b-4aae-a789-214e2392579a",
       "typeVersion": 1.1
-    },
-    {
-      "parameters": {
-        "model": "gpt-4o",
-        "options": {}
-      },
-      "id": "96bf895f-a18c-4a4c-bc26-3ec5d2372de5",
-      "name": "OpenAI Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "position": [
-        920,
-        1440
-      ],
-      "typeVersion": 1
     },
     {
       "parameters": {},
@@ -115,9 +102,9 @@
         "operation": "getAll",
         "calendar": {
           "__rl": true,
+          "value": "joseph@zacharie.org",
           "mode": "list",
-          "value": "",
-          "cachedResultName": ""
+          "cachedResultName": "joseph@zacharie.org"
         },
         "options": {
           "timeMin": "={{ $fromAI('start_date') }}",
@@ -131,7 +118,13 @@
         1720,
         1420
       ],
-      "typeVersion": 1.2
+      "typeVersion": 1.2,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "9POwnJ7v0e7x9Dlz",
+          "name": "Google Calendar Joseph"
+        }
+      }
     },
     {
       "parameters": {
@@ -139,9 +132,9 @@
         "toolDescription": "Use this Google Calendar tool when you are asked to create an event.",
         "calendar": {
           "__rl": true,
+          "value": "joseph@zacharie.org",
           "mode": "list",
-          "value": "",
-          "cachedResultName": ""
+          "cachedResultName": "joseph@zacharie.org"
         },
         "start": "={{ $fromAI('start_date') }} ",
         "end": "={{ $fromAI('end_date') }} ",
@@ -159,7 +152,13 @@
         2140,
         1420
       ],
-      "typeVersion": 1.2
+      "typeVersion": 1.2,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "9POwnJ7v0e7x9Dlz",
+          "name": "Google Calendar Joseph"
+        }
+      }
     },
     {
       "parameters": {
@@ -289,6 +288,26 @@
         1620
       ],
       "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "model": "granite3.2:8b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        960,
+        1360
+      ],
+      "id": "876cdba4-cb96-49a6-a9b5-9a8530314bcd",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "BrmAQUYuX864p0gx",
+          "name": "http://192.168.0.52:11434"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -298,6 +317,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-03-15T16:34:07.310Z",
-  "versionId": "d5ad9edb-bbc9-4206-a745-0ff703f42138"
+  "updatedAt": "2025-03-16T09:17:56.396Z",
+  "versionId": "f1a8cb4a-a640-4ad7-92b4-381c6ab9cac6"
 }
