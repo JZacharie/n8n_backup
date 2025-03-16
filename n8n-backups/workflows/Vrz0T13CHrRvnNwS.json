@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Get Audio File": {
       "main": [
@@ -73,13 +73,7 @@
     },
     "Audio Task Message": {
       "main": [
-        [
-          {
-            "node": "NocoDB1",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Ollama Chat Model": {
@@ -131,12 +125,12 @@
         ]
       ]
     },
-    "Simple Memory": {
-      "ai_memory": [
+    "Gmail": {
+      "ai_tool": [
         [
           {
             "node": "AI Agent",
-            "type": "ai_memory",
+            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -315,7 +309,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "http://192.168.0.56:9000/asr?encode=true&task=transcribe&output=txt",
+        "url": "http://192.168.0.188:9000/asr?encode=true&task=transcribe&output=txt",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -393,8 +387,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1420,
-        -220
+        1400,
+        -260
       ],
       "id": "9e1d52fa-537b-41ac-bc7d-e26bc753f308",
       "name": "Edit Fields"
@@ -402,9 +396,9 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "={{ $json.message.text }}",
+        "text": "={{ $('HTTP Request').item.json.data }}",
         "options": {
-          "systemMessage": "You are a helpful assistant which help Joseph ZACHARIE with mail joseph@zacharie.org. "
+          "systemMessage": "You are a helpful assistant.\nIf you need sign a use a context use :\nJoseph ZACHARIE with mail joseph@zacharie.org. "
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -418,7 +412,7 @@
     },
     {
       "parameters": {
-        "model": "gemma3:12b",
+        "model": "llama3.1:8b",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
@@ -431,8 +425,8 @@
       "name": "Ollama Chat Model",
       "credentials": {
         "ollamaApi": {
-          "id": "BrmAQUYuX864p0gx",
-          "name": "http://192.168.0.52:11434"
+          "id": "yNxd2gafsoT3jtQP",
+          "name": "http://ollama.anything-llm.svc:11434"
         }
       }
     },
@@ -539,15 +533,28 @@
       }
     },
     {
-      "parameters": {},
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.3,
+      "parameters": {
+        "sendTo": "joseph@zacharie.org",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "emailType": "text",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
       "position": [
-        1720,
-        200
+        1880,
+        140
       ],
-      "id": "250ce638-bde8-40f8-9c7f-11e28031d017",
-      "name": "Simple Memory"
+      "id": "8b3a43f5-4f83-430e-bb0a-02956aaad60e",
+      "name": "Gmail",
+      "webhookId": "6d844755-ceb8-42cb-a493-d759dec134d6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "H0l5mvcdVEzHgawi",
+          "name": "Gmail joseph@zacharie.org"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -570,6 +577,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-15T13:58:20.785Z",
-  "versionId": "544c196a-9e9d-4f96-9851-01164aabb52d"
+  "updatedAt": "2025-03-16T14:58:39.002Z",
+  "versionId": "2edb33de-98b7-4684-8c79-70c7df7d48f3"
 }
