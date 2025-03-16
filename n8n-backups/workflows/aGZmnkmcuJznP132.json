@@ -150,7 +150,7 @@
     },
     {
       "parameters": {
-        "model": "llama3.1:latest",
+        "model": "qwen2.5-coder:14b",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
@@ -312,6 +312,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-03-15T15:44:30.240Z",
-  "versionId": "4e706967-747e-4585-a8a5-2803973d2695"
+  "updatedAt": "2025-03-16T10:14:47.527Z",
+  "versionId": "16397d64-a293-4112-9d81-c4e83622adac"
 }
