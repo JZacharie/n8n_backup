@@ -124,6 +124,28 @@
           }
         ]
       ]
+    },
+    "Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-03-07T12:43:18.980Z",
@@ -386,6 +408,7 @@
       "parameters": {
         "promptType": "define",
         "text": "={{ $('HTTP Request').item.json.data }}",
+        "hasOutputParser": true,
         "options": {
           "systemMessage": "You are a helpful assistant.\nIf you need sign a use a context use :\nJoseph ZACHARIE with mail joseph@zacharie.org. "
         }
@@ -407,7 +430,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
       "typeVersion": 1,
       "position": [
-        1580,
+        1620,
         140
       ],
       "id": "34ed67c8-2049-4ca5-ba33-d1b017fcf5e0",
@@ -479,7 +502,7 @@
       "typeVersion": 1.2,
       "position": [
         2520,
-        -60
+        0
       ],
       "id": "2e73d593-6604-45ed-8fce-715adbc43118",
       "name": "Telegram",
@@ -520,6 +543,46 @@
           "name": "https://nocodb.p.zacharie.org"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "get"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1760,
+        280
+      ],
+      "id": "82250baa-4261-4220-94fb-c11e3072459c",
+      "name": "Gmail",
+      "webhookId": "75c04f9f-19f8-474a-9a81-0884942fa6fa",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "H0l5mvcdVEzHgawi",
+          "name": "Gmail joseph@zacharie.org"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1880,
+        280
+      ],
+      "id": "c7f5e2a6-bdf4-4645-9004-cffd56ef656f",
+      "name": "Gmail1",
+      "webhookId": "2070d041-e5ab-4343-8398-c5d844901185",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "H0l5mvcdVEzHgawi",
+          "name": "Gmail joseph@zacharie.org"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -542,6 +605,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-18T13:20:17.429Z",
-  "versionId": "f20ce70f-ad09-476c-9c2c-1873318a1f40"
+  "updatedAt": "2025-03-18T14:06:40.071Z",
+  "versionId": "c905d3a7-bf76-490d-b2cd-1ec80fa635d5"
 }
