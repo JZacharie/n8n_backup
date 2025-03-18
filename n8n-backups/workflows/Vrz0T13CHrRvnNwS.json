@@ -407,8 +407,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
       "typeVersion": 1,
       "position": [
-        1560,
-        120
+        1580,
+        140
       ],
       "id": "34ed67c8-2049-4ca5-ba33-d1b017fcf5e0",
       "name": "Ollama Chat Model",
@@ -542,6 +542,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-18T08:47:13.755Z",
-  "versionId": "4cf6ae54-61a7-49b7-9958-dc215063aa08"
+  "updatedAt": "2025-03-18T13:20:17.429Z",
+  "versionId": "f20ce70f-ad09-476c-9c2c-1873318a1f40"
 }
