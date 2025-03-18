@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Get Audio File": {
       "main": [
@@ -120,17 +120,6 @@
           {
             "node": "Telegram",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Gmail": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -418,8 +407,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
       "typeVersion": 1,
       "position": [
-        1580,
-        140
+        1560,
+        120
       ],
       "id": "34ed67c8-2049-4ca5-ba33-d1b017fcf5e0",
       "name": "Ollama Chat Model",
@@ -531,30 +520,6 @@
           "name": "https://nocodb.p.zacharie.org"
         }
       }
-    },
-    {
-      "parameters": {
-        "sendTo": "joseph@zacharie.org",
-        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
-        "emailType": "text",
-        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.gmailTool",
-      "typeVersion": 2.1,
-      "position": [
-        1880,
-        140
-      ],
-      "id": "8b3a43f5-4f83-430e-bb0a-02956aaad60e",
-      "name": "Gmail",
-      "webhookId": "6d844755-ceb8-42cb-a493-d759dec134d6",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "H0l5mvcdVEzHgawi",
-          "name": "Gmail joseph@zacharie.org"
-        }
-      }
     }
   ],
   "pinData": {},
@@ -577,6 +542,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-16T14:58:39.002Z",
-  "versionId": "2edb33de-98b7-4684-8c79-70c7df7d48f3"
+  "updatedAt": "2025-03-18T08:47:13.755Z",
+  "versionId": "4cf6ae54-61a7-49b7-9958-dc215063aa08"
 }
