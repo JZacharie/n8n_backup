@@ -22,6 +22,17 @@
           }
         ]
       ]
+    },
+    "Gmail1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-03-11T09:10:52.001Z",
@@ -34,7 +45,7 @@
     {
       "parameters": {
         "operation": "getAll",
-        "limit": 1,
+        "limit": 5,
         "simple": false,
         "filters": {
           "q": "vms@free-mobile.fr "
@@ -44,8 +55,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -220,
-        -180
+        -460,
+        -360
       ],
       "id": "e2c2a788-2aad-469c-86e9-74b1533e6d4c",
       "name": "Gmail",
@@ -53,7 +64,7 @@
       "credentials": {
         "gmailOAuth2": {
           "id": "H0l5mvcdVEzHgawi",
-          "name": "Gmail account"
+          "name": "Gmail joseph@zacharie.org"
         }
       }
     },
@@ -62,8 +73,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -440,
-        -180
+        -680,
+        -360
       ],
       "id": "a5e1e6fe-0e78-490b-b687-c14091ffd572",
       "name": "When clicking ‘Test workflow’"
@@ -80,8 +91,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        20,
-        -180
+        -220,
+        -360
       ],
       "id": "7a252495-03b6-446d-8b8d-87fb8310b0cd",
       "name": "Gmail1",
@@ -89,9 +100,48 @@
       "credentials": {
         "gmailOAuth2": {
           "id": "H0l5mvcdVEzHgawi",
-          "name": "Gmail account"
+          "name": "Gmail joseph@zacharie.org"
         }
       }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.0.188:9000/asr?encode=true&task=transcribe&output=txt",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "multipart/form-data"
+            },
+            {
+              "name": "accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "audio_file",
+              "inputDataFieldName": "attachment_0"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        40,
+        -360
+      ],
+      "id": "bfd95790-b4ad-43bc-9f51-6e0e009e7cd8",
+      "name": "HTTP Request"
     }
   ],
   "pinData": {},
@@ -101,6 +151,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-03-11T09:33:08.070Z",
-  "versionId": "6cf624c1-63bd-4645-bcad-2f0e07c1b3ba"
+  "updatedAt": "2025-03-18T08:49:22.835Z",
+  "versionId": "01e058f0-7309-4350-b4b3-c722f1753ff1"
 }
