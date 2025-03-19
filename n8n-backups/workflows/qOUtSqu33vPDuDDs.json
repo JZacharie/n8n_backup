@@ -1,0 +1,243 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mistral Cloud Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-19T06:08:35.019Z",
+  "id": "qOUtSqu33vPDuDDs",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Paperless",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -820,
+        -520
+      ],
+      "id": "da466f41-3eaf-47ca-9c41-e9f17d4563d2",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://paperless.p.zacharie.org/api/documents/?query=foo",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -640,
+        -520
+      ],
+      "id": "ab59d512-6d9a-40e7-8768-0923409e05d2",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "hRDfQhrcvv78nlPF",
+          "name": "Paperless"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6b34e134-0f4e-4efe-a14e-e78f4f89547f",
+              "name": "all",
+              "value": "={{ $json.all }}",
+              "type": "array"
+            },
+            {
+              "id": "998bd149-c105-45b2-a8f7-96843a803601",
+              "name": "count",
+              "value": "={{ $json.count }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -460,
+        -520
+      ],
+      "id": "ee380e8c-94a9-452f-b455-465f3ecf58d4",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        200,
+        -520
+      ],
+      "id": "86ec98a3-6d16-4c03-9258-d1a4ad44b9db",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "mistral-ocr-latest",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        160,
+        -260
+      ],
+      "id": "93197cc3-a83b-4fa9-9675-2bd8a15a7079",
+      "name": "Mistral Cloud Chat Model",
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "sqFz4vgPagsCxwLb",
+          "name": "Mistral Cloud account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -260,
+        -520
+      ],
+      "id": "ba7917dd-7954-4b9d-b14b-02be02b19b58",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "url": "=https://paperless.p.zacharie.org/api/documents//share_links/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -20,
+        -520
+      ],
+      "id": "d797afe6-8f45-4826-a39b-435f1571246c",
+      "name": "HTTP Request2",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "hRDfQhrcvv78nlPF",
+          "name": "Paperless"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-03-07T18:04:56.335Z",
+      "updatedAt": "2025-03-07T18:04:56.335Z",
+      "id": "nSt3WDeZ4wT5JwU2",
+      "name": "ENV:DEV"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-19T13:43:53.914Z",
+  "versionId": "00eecc0c-fdb1-4b81-91e9-bc2c1bd316dd"
+}
