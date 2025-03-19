@@ -124,28 +124,6 @@
           }
         ]
       ]
-    },
-    "Gmail": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Gmail1": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "createdAt": "2025-03-07T12:43:18.980Z",
@@ -543,46 +521,6 @@
           "name": "https://nocodb.p.zacharie.org"
         }
       }
-    },
-    {
-      "parameters": {
-        "operation": "get"
-      },
-      "type": "n8n-nodes-base.gmailTool",
-      "typeVersion": 2.1,
-      "position": [
-        1760,
-        280
-      ],
-      "id": "82250baa-4261-4220-94fb-c11e3072459c",
-      "name": "Gmail",
-      "webhookId": "75c04f9f-19f8-474a-9a81-0884942fa6fa",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "H0l5mvcdVEzHgawi",
-          "name": "Gmail joseph@zacharie.org"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "delete"
-      },
-      "type": "n8n-nodes-base.gmailTool",
-      "typeVersion": 2.1,
-      "position": [
-        1880,
-        280
-      ],
-      "id": "c7f5e2a6-bdf4-4645-9004-cffd56ef656f",
-      "name": "Gmail1",
-      "webhookId": "2070d041-e5ab-4343-8398-c5d844901185",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "H0l5mvcdVEzHgawi",
-          "name": "Gmail joseph@zacharie.org"
-        }
-      }
     }
   ],
   "pinData": {},
@@ -605,6 +543,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-18T14:06:40.071Z",
-  "versionId": "c905d3a7-bf76-490d-b2cd-1ec80fa635d5"
+  "updatedAt": "2025-03-19T09:47:02.366Z",
+  "versionId": "63f3b105-663b-4461-a869-3ee90e25ae4e"
 }
