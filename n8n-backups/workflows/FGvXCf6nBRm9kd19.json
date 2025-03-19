@@ -166,8 +166,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.8,
       "position": [
-        80,
-        -260
+        40,
+        -320
       ],
       "id": "60ba7104-ccd9-41f2-b23c-92c840a59942",
       "name": "AI Agent"
@@ -218,8 +218,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.8,
       "position": [
-        680,
-        -220
+        600,
+        -320
       ],
       "id": "39030238-a955-41f2-9d2c-a5d80e8a680f",
       "name": "AI Agent1"
@@ -255,8 +255,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1100,
-        -220
+        1020,
+        -320
       ],
       "id": "00f8472b-590e-4c8b-bef9-8d278806d820",
       "name": "Telegram",
@@ -284,8 +284,8 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        380,
-        40
+        280,
+        120
       ],
       "id": "0acbb40d-e23c-4a26-8d4d-b6b87f3b26c7",
       "name": "Google Calendar",
@@ -310,8 +310,8 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        180,
-        40
+        160,
+        120
       ],
       "id": "969ac404-739b-4612-8a93-ea1edf025792",
       "name": "Google Calendar1",
@@ -367,6 +367,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-03-16T11:08:12.723Z",
-  "versionId": "88d42a7e-3529-4e8a-9efc-fa9e7e0895fc"
+  "updatedAt": "2025-03-19T10:22:40.843Z",
+  "versionId": "de2ae279-54ee-453a-a0e8-a587d7d5a2e5"
 }
