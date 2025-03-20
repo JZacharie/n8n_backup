@@ -1,17 +1,6 @@
 {
   "active": true,
   "connections": {
-    "When clicking ‘Test workflow’": {
-      "main": [
-        [
-          {
-            "node": "Gmail",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Gmail": {
       "main": [
         [
@@ -33,6 +22,17 @@
           }
         ]
       ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-03-11T09:10:52.001Z",
@@ -45,18 +45,18 @@
     {
       "parameters": {
         "operation": "getAll",
-        "limit": 5,
+        "limit": 10,
         "simple": false,
         "filters": {
-          "q": "vms@free-mobile.fr "
+          "q": "=vms@free-mobile.fr after:{{ new Date().getFullYear() + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate() }}\n"
         },
         "options": {}
       },
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -460,
-        -360
+        -880,
+        -1080
       ],
       "id": "e2c2a788-2aad-469c-86e9-74b1533e6d4c",
       "name": "Gmail",
@@ -67,17 +67,6 @@
           "name": "Gmail joseph@zacharie.org"
         }
       }
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -680,
-        -360
-      ],
-      "id": "a5e1e6fe-0e78-490b-b687-c14091ffd572",
-      "name": "When clicking ‘Test workflow’"
     },
     {
       "parameters": {
@@ -91,8 +80,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -220,
-        -360
+        -700,
+        -1080
       ],
       "id": "7a252495-03b6-446d-8b8d-87fb8310b0cd",
       "name": "Gmail1",
@@ -137,20 +126,55 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        40,
-        -360
+        -520,
+        -1080
       ],
       "id": "bfd95790-b4ad-43bc-9f51-6e0e009e7cd8",
       "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1060,
+        -1080
+      ],
+      "id": "dd11071d-0d8a-4dff-b205-fd09ae47ecf0",
+      "name": "Schedule Trigger"
     }
   ],
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": null,
-  "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-03-19T08:36:22.536Z",
-  "versionId": "01e058f0-7309-4350-b4b3-c722f1753ff1"
+  "staticData": {
+    "node:Gmail Trigger": {
+      "Gmail Trigger": {
+        "lastTimeChecked": 1742453792
+      }
+    },
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2025-03-07T18:04:56.335Z",
+      "updatedAt": "2025-03-07T18:04:56.335Z",
+      "id": "nSt3WDeZ4wT5JwU2",
+      "name": "ENV:DEV"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-20T07:31:49.476Z",
+  "versionId": "71e0c6f7-e08b-47a6-8976-ab786a3b507f"
 }
