@@ -5,23 +5,46 @@
       "main": [
         [
           {
-            "node": "setEnvDev",
+            "node": "setEnvN8n",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "NocoDB getSecrets": {
+    "setEnvN8n": {
+      "main": [
+        [
+          {
+            "node": "NocoDBgetSecrets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NocoDBgetSecrets": {
       "main": [
         []
       ]
     },
-    "setEnvDev": {
+    "NocoDBgetSecrets1": {
       "main": [
         [
           {
-            "node": "NocoDB getSecrets",
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
@@ -41,37 +64,11 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -780,
-        -280
+        -1180,
+        -520
       ],
       "id": "26a87dc9-f36c-4b9f-bd4a-8a8ad40b110d",
       "name": "When clicking ‘Test workflow’"
-    },
-    {
-      "parameters": {
-        "authentication": "nocoDbApiToken",
-        "operation": "getAll",
-        "projectId": "pqq0r9u8onno06m",
-        "table": "mfxe695ekaxut0k",
-        "returnAll": true,
-        "options": {
-          "where": "=(type,eq,pam)~and(key,eq,login)~and(env,eq,{{ $json.env }})"
-        }
-      },
-      "type": "n8n-nodes-base.nocoDb",
-      "typeVersion": 3,
-      "position": [
-        -260,
-        -280
-      ],
-      "id": "347ead4d-5d5f-4bfe-9acd-18693bd61836",
-      "name": "NocoDB getSecrets",
-      "credentials": {
-        "nocoDbApiToken": {
-          "id": "QFrzaYCOtNEfiY9N",
-          "name": "https://nocodb.p.zacharie.org"
-        }
-      }
     },
     {
       "parameters": {
@@ -82,11 +79,79 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -520,
-        -280
+        -980,
+        -520
       ],
       "id": "d40adf1b-8363-4159-9c96-b343b57caf5b",
-      "name": "setEnvDev"
+      "name": "setEnvN8n"
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "getAll",
+        "projectId": "pqq0r9u8onno06m",
+        "table": "mfxe695ekaxut0k",
+        "returnAll": true,
+        "options": {
+          "where": "=(env,eq,{{ $json.env }})~and(type,eq,laplatforme)"
+        }
+      },
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        -720,
+        -700
+      ],
+      "id": "347ead4d-5d5f-4bfe-9acd-18693bd61836",
+      "name": "NocoDBgetSecrets",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "QFrzaYCOtNEfiY9N",
+          "name": "https://nocodb.p.zacharie.org"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "getAll",
+        "projectId": "pqq0r9u8onno06m",
+        "table": "mfxe695ekaxut0k",
+        "returnAll": true,
+        "options": {
+          "where": "=(env,eq,{{ $json.env }})"
+        }
+      },
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        -760,
+        -520
+      ],
+      "id": "6a5727bd-413b-4079-89f3-be2260b69323",
+      "name": "NocoDBgetSecrets1",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "QFrzaYCOtNEfiY9N",
+          "name": "https://nocodb.p.zacharie.org"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": "={{ 1 }}",
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -440,
+        -520
+      ],
+      "id": "d23ffa60-0dd5-453c-9c7d-2f2f2f227568",
+      "name": "Loop Over Items"
     }
   ],
   "pinData": {},
@@ -96,6 +161,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-03-15T06:55:10.953Z",
-  "versionId": "08af4ca6-3ac7-44e9-825e-b276f139a89c"
+  "updatedAt": "2025-03-20T07:42:41.271Z",
+  "versionId": "be7ea8d9-8d78-48b8-984b-a25ccef4deea"
 }
