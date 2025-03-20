@@ -84,7 +84,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "My workflow 4",
+  "name": "Test RAG QDRANT",
   "nodes": [
     {
       "parameters": {},
@@ -276,8 +276,15 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2025-03-20T07:32:10.054Z",
+      "updatedAt": "2025-03-20T07:32:10.054Z",
+      "id": "Uine6DGBzrNXzPpn",
+      "name": "ENV:TEST"
+    }
+  ],
   "triggerCount": 0,
-  "updatedAt": "2025-03-07T16:16:49.570Z",
-  "versionId": "c6a3b30b-c322-4422-bd47-37ff379e45cf"
+  "updatedAt": "2025-03-20T07:33:55.291Z",
+  "versionId": "8d7cadd8-c571-472a-9e44-4348ee551809"
 }
