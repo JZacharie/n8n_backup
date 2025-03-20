@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Get Audio File": {
       "main": [
@@ -408,7 +408,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
       "typeVersion": 1,
       "position": [
-        1620,
+        1600,
         140
       ],
       "id": "34ed67c8-2049-4ca5-ba33-d1b017fcf5e0",
@@ -543,6 +543,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-19T09:47:02.366Z",
-  "versionId": "63f3b105-663b-4461-a869-3ee90e25ae4e"
+  "updatedAt": "2025-03-20T06:47:46.953Z",
+  "versionId": "b4abee0f-230c-43dd-8746-2e13115079b3"
 }
