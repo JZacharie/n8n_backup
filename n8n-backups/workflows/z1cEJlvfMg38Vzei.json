@@ -1,0 +1,81 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Adalo1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-20T12:40:39.942Z",
+  "id": "z1cEJlvfMg38Vzei",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 7",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "create",
+        "collectionId": "t_dw0mqduiztzhalwjchzcij1ug",
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.adalo",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        -320
+      ],
+      "id": "17c1f389-a694-4c44-9a21-ac80cc029a2d",
+      "name": "Adalo",
+      "credentials": {
+        "adaloApi": {
+          "id": "AFEdCMyXXM89XVTg",
+          "name": "Adalo account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f5bacfb8-826a-4a4c-8330-1362f6cde0bb",
+      "name": "Webhook",
+      "webhookId": "2fa42827-563d-419c-b923-be6541267ac5"
+    },
+    {
+      "parameters": {
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.adalo",
+      "typeVersion": 1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "aa33c8bc-9a39-445a-8681-e97b9e2ff70b",
+      "name": "Adalo1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-20T12:41:33.803Z",
+  "versionId": "567abf8f-f566-4dfb-af84-b6547d9bdca7"
+}
