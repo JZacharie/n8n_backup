@@ -296,7 +296,7 @@
       "credentials": {
         "qdrantApi": {
           "id": "8vlzFhUKNuJyRlus",
-          "name": "QdrantApi account 3"
+          "name": "http://qdrant-headless.qdrant.svc:6333"
         }
       }
     },
@@ -361,7 +361,7 @@
       "credentials": {
         "gmailOAuth2": {
           "id": "H0l5mvcdVEzHgawi",
-          "name": "Gmail account"
+          "name": "Gmail joseph@zacharie.org"
         }
       }
     },
@@ -643,7 +643,7 @@
       "credentials": {
         "qdrantApi": {
           "id": "w7EntMAH039IkyFK",
-          "name": "QdrantApi account"
+          "name": "https://eb5c960e-f7e4-4730-a20e-e2aaae7aa016.us-east4-0.gcp.clou"
         }
       }
     },
@@ -785,7 +785,7 @@
       "credentials": {
         "ollamaApi": {
           "id": "BrmAQUYuX864p0gx",
-          "name": "Ollama account"
+          "name": "http://192.168.0.52:11434"
         }
       }
     },
@@ -805,7 +805,7 @@
       "credentials": {
         "ollamaApi": {
           "id": "BrmAQUYuX864p0gx",
-          "name": "Ollama account"
+          "name": "http://192.168.0.52:11434"
         }
       }
     },
@@ -824,7 +824,7 @@
       "credentials": {
         "ollamaApi": {
           "id": "BrmAQUYuX864p0gx",
-          "name": "Ollama account"
+          "name": "http://192.168.0.52:11434"
         }
       }
     },
@@ -844,7 +844,7 @@
       "credentials": {
         "ollamaApi": {
           "id": "BrmAQUYuX864p0gx",
-          "name": "Ollama account"
+          "name": "http://192.168.0.52:11434"
         }
       }
     },
@@ -870,7 +870,7 @@
       "credentials": {
         "gmailOAuth2": {
           "id": "H0l5mvcdVEzHgawi",
-          "name": "Gmail account"
+          "name": "Gmail joseph@zacharie.org"
         }
       }
     },
@@ -893,7 +893,7 @@
       "credentials": {
         "gmailOAuth2": {
           "id": "H0l5mvcdVEzHgawi",
-          "name": "Gmail account"
+          "name": "Gmail joseph@zacharie.org"
         }
       }
     },
@@ -913,7 +913,7 @@
       "credentials": {
         "ollamaApi": {
           "id": "BrmAQUYuX864p0gx",
-          "name": "Ollama account"
+          "name": "http://192.168.0.52:11434"
         }
       }
     }
@@ -923,8 +923,15 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2025-03-20T07:32:10.054Z",
+      "updatedAt": "2025-03-20T07:32:10.054Z",
+      "id": "Uine6DGBzrNXzPpn",
+      "name": "ENV:TEST"
+    }
+  ],
   "triggerCount": 0,
-  "updatedAt": "2025-02-16T09:50:49.312Z",
-  "versionId": "19ecec8f-f5d5-4feb-919d-ae5534cae83f"
+  "updatedAt": "2025-03-20T07:34:19.189Z",
+  "versionId": "cc6a2cc9-5cf3-43d8-898a-8502f79604ab"
 }
