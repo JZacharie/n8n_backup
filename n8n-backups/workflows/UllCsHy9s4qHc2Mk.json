@@ -1,11 +1,105 @@
 {
   "active": false,
-  "connections": {},
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        []
+      ]
+    }
+  },
   "createdAt": "2025-03-22T14:44:12.331Z",
   "id": "UllCsHy9s4qHc2Mk",
   "meta": null,
   "name": "Paperless to OCR test",
-  "nodes": [],
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -980,
+        -40
+      ],
+      "id": "1654ac1a-efc6-4227-b04f-4edc34867427",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://paperless.p.zacharie.org/api/documents",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "page_size",
+              "value": "2"
+            },
+            {
+              "name": "ordering",
+              "value": "-created"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Token d57a3252c1dfe5850148c3fe4b813ce8"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -600,
+        -380
+      ],
+      "id": "d3a35bef-272a-4dd2-ad2a-31f1652b61c9",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "https://paperless.p.zacharie.org/api/documents/1329/download",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Token d57a3252c1dfe5850148c3fe4b813ce8"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -700,
+        -40
+      ],
+      "id": "094c4ab0-9d5b-4d27-9176-c24aa34281e5",
+      "name": "HTTP Request1"
+    }
+  ],
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
@@ -20,6 +114,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-03-22T14:44:16.327Z",
-  "versionId": "4db3d97f-0347-4138-a02f-b08b4f7240ec"
+  "updatedAt": "2025-03-22T17:55:58.820Z",
+  "versionId": "b31f9e5d-f6fd-4f66-b020-321a4e7cd2d0"
 }
