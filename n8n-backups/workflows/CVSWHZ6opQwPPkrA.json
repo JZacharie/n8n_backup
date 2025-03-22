@@ -1,0 +1,171 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get N8N Dev Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code Map Json": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get N8N Dev Workflow": {
+      "main": [
+        [
+          {
+            "node": "Code Map Json",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "NocoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-22T07:19:06.085Z",
+  "id": "CVSWHZ6opQwPPkrA",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 8",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2300,
+        -1580
+      ],
+      "id": "8fccf2f3-e8f3-4422-b556-440b6f4c7bea",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// let name = $jmespath($json.data, \"[*].[name, id, active]\" )\nlet workflows = $json.data.map(item => {\n    return {\n        name: item.name,\n        id: item.id,\n        active: item.active\n    };\n});\n\nreturn {workflows};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1760,
+        -1580
+      ],
+      "id": "618c45cc-69f6-47af-ba2c-2694cb23b759",
+      "name": "Code Map Json"
+    },
+    {
+      "parameters": {
+        "url": "https://n8n-dev.p.zacharie.org/api/v1/workflows",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-N8N-API-KEY",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyZWFhYzcyYS1iM2QxLTRjNTYtOGU4YS1jOTQ4ZTdhZDFjZjYiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzQyNjI1OTE5fQ.KODtuevjqALVbc7Vbq2uW0PdLoUDXd0ZsKumAgpva14"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2000,
+        -1580
+      ],
+      "id": "08883a8d-9bef-442f-b623-adbb03558bbd",
+      "name": "Get N8N Dev Workflow"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "workflows",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -1540,
+        -1580
+      ],
+      "id": "59b49d36-ecc9-4e9d-9c3c-388b60b535c4",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "create",
+        "projectId": "pqq0r9u8onno06m",
+        "table": "mqbk8ms05e3zv7a",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "=workflow_name",
+              "fieldValue": "={{ $json.name }}"
+            },
+            {
+              "fieldName": "=workflow_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldName": "Active",
+              "fieldValue": "={{ $json.active }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        -1280,
+        -1580
+      ],
+      "id": "65bea33e-1595-458d-9bab-368084a19fba",
+      "name": "NocoDB",
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "QFrzaYCOtNEfiY9N",
+          "name": "https://nocodb.p.zacharie.org"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-22T08:49:42.133Z",
+  "versionId": "e6c65aa1-eca0-435d-b43a-5975c923687d"
+}
