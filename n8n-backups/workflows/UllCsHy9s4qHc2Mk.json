@@ -1,0 +1,25 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-03-22T14:44:12.331Z",
+  "id": "UllCsHy9s4qHc2Mk",
+  "meta": null,
+  "name": "Paperless to OCR test",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-03-07T18:04:56.335Z",
+      "updatedAt": "2025-03-07T18:04:56.335Z",
+      "id": "nSt3WDeZ4wT5JwU2",
+      "name": "ENV:DEV"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-22T14:44:16.327Z",
+  "versionId": "4db3d97f-0347-4138-a02f-b08b4f7240ec"
+}
