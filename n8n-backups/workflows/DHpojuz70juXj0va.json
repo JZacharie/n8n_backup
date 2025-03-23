@@ -44,6 +44,22 @@
           }
         ]
       ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        []
+      ]
     }
   },
   "createdAt": "2025-03-23T18:03:30.540Z",
@@ -51,15 +67,15 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "My workflow 9",
+  "name": "G-Mail from IA",
   "nodes": [
     {
       "parameters": {},
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -620,
-        -360
+        -860,
+        -520
       ],
       "id": "b516d985-c5ab-4dab-846c-0b7dc8e265f5",
       "name": "When clicking ‘Test workflow’"
@@ -75,8 +91,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -380,
-        -360
+        -600,
+        -520
       ],
       "id": "050f98a7-d651-4d61-a177-8f359c572ecd",
       "name": "Gmail",
@@ -104,8 +120,8 @@
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1.2,
       "position": [
-        -360,
-        -120
+        -600,
+        -280
       ],
       "id": "df15d946-1e58-4b03-848d-e25729a08cd0",
       "name": "Gmail Trigger",
@@ -119,14 +135,16 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Please resume this mail in french :  {{ $json.snippet }}",
-        "options": {}
+        "text": "=voici un mail avec ce sujet :  {{ $json.Subject }}, cette expéditeur : {{ $json.From }} et ce message : {{ $json.snippet }}\nJe ne veux que les labels en format json , rien d'autre .",
+        "options": {
+          "systemMessage": "Génère une liste de labels adaptés à l'analyse de mails. Ces labels doivent être organisés en catégories claires et couvrir différents aspects du contenu des messages. Les principales catégories doivent inclure :\n\nType de contenu (ex : Commercial, Support technique, Facturation, Invitation, etc.)\n\nUrgence (ex : Urgent, Prioritaire, Non prioritaire)\n\nAction requise (ex : Réponse immédiate, Suivi nécessaire, À archiver)\n\nSentiment/tonalité (ex : Positif, Négatif, Neutre, Colérique)\n\nNiveau de confidentialité (ex : Confidentiel, Sensible, Public)\n\nChaque label doit être concis, explicite et facile à comprendre. Privilégie des termes standards et évite les labels trop spécifiques qui pourraient compliquer la classification."
+        }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.8,
       "position": [
-        -80,
-        -300
+        -280,
+        -480
       ],
       "id": "3a97350b-cbcb-4554-8612-3cdab74da8f0",
       "name": "AI Agent"
@@ -139,8 +157,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
       "typeVersion": 1,
       "position": [
-        -100,
-        -20
+        -320,
+        -240
       ],
       "id": "f7393e9c-4b05-40c9-83ae-7c4172c4b082",
       "name": "Ollama Chat Model",
@@ -150,6 +168,33 @@
           "name": "http://192.168.0.52:11434"
         }
       }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        -480
+      ],
+      "id": "9cb49f25-fa3e-442d-904e-9c7c86ce7d2a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        -180
+      ],
+      "id": "ce1e123d-bc28-40b0-9304-3c9b6da4b495",
+      "name": "Structured Output Parser"
     }
   ],
   "pinData": {},
@@ -159,6 +204,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-03-23T18:34:27.984Z",
-  "versionId": "bde72a3f-4050-456b-91fa-97328a23f655"
+  "updatedAt": "2025-03-23T19:48:41.967Z",
+  "versionId": "93defe7e-c58d-4e25-9d5a-ac866766004d"
 }
