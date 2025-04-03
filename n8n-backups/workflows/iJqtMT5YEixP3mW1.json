@@ -29,7 +29,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Sentiment Analysis",
+  "name": "⚠️ Sentiment Analysis",
   "nodes": [
     {
       "parameters": {
@@ -38,8 +38,8 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.1,
       "position": [
-        -620,
-        -520
+        -840,
+        -680
       ],
       "id": "17419a24-6a7f-4970-87eb-50c2fb9d60ba",
       "name": "When chat message received",
@@ -53,15 +53,15 @@
       "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
       "typeVersion": 1,
       "position": [
-        -340,
-        -520
+        -580,
+        -680
       ],
       "id": "292d0e36-c712-4019-aafb-027b010452ce",
       "name": "Sentiment Analysis"
     },
     {
       "parameters": {
-        "model": "deepseek-r1:14b",
+        "model": "gemma3:12b",
         "options": {
           "format": "default"
         }
@@ -69,8 +69,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
       "typeVersion": 1,
       "position": [
-        -320,
-        -300
+        -620,
+        -400
       ],
       "id": "45dd23cf-3b1a-4537-a603-d1e5c4106478",
       "name": "Ollama Chat Model",
@@ -87,8 +87,21 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2025-03-07T18:04:56.335Z",
+      "updatedAt": "2025-03-07T18:04:56.335Z",
+      "id": "nSt3WDeZ4wT5JwU2",
+      "name": "ENV:DEV"
+    },
+    {
+      "createdAt": "2025-03-07T18:07:21.232Z",
+      "updatedAt": "2025-03-07T18:07:21.232Z",
+      "id": "1eWyovuAP6Z9pjpH",
+      "name": "Working:False"
+    }
+  ],
   "triggerCount": 2,
-  "updatedAt": "2025-03-07T18:09:34.743Z",
-  "versionId": "cc598075-966a-4dbb-98e0-96aff34f03a5"
+  "updatedAt": "2025-04-03T05:31:04.063Z",
+  "versionId": "ae683164-59a0-49be-9102-9336f484df04"
 }
