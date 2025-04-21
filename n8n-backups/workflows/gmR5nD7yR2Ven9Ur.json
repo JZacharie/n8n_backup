@@ -1,0 +1,313 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Ollama": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub Document Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "GitHub Document Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qdrant Vector Store1": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Ollama1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-21T07:48:14.760Z",
+  "id": "gmR5nD7yR2Ven9Ur",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Analyse GitHub Jo3",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1200,
+        -300
+      ],
+      "id": "ce6ec89a-70cc-4c3d-bef4-fa9afcf2142e",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "nomic_text_collection",
+          "mode": "list",
+          "cachedResultName": "nomic_text_collection"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1.1,
+      "position": [
+        -980,
+        -300
+      ],
+      "id": "03d4cb86-fb73-4321-b0c7-f9682386e0a7",
+      "name": "Qdrant Vector Store",
+      "credentials": {
+        "qdrantApi": {
+          "id": "8vlzFhUKNuJyRlus",
+          "name": "http://qdrant-headless.qdrant.svc:6333"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "nomic-embed-text:latest"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        -60
+      ],
+      "id": "ea52b7c6-b7c0-496e-8307-5558e18a9700",
+      "name": "Embeddings Ollama",
+      "credentials": {
+        "ollamaApi": {
+          "id": "yNxd2gafsoT3jtQP",
+          "name": "http://ollama.anything-llm.svc:11434"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "repository": "https://github.com/JZacharie/jo3",
+        "additionalOptions": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentGithubLoader",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        -100
+      ],
+      "id": "55558fb4-6e3d-48a7-9f85-948c300e96f2",
+      "name": "GitHub Document Loader",
+      "credentials": {
+        "githubApi": {
+          "id": "VEMBFTGnGUad1IPJ",
+          "name": "GitHub account JZacharie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 200,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        120
+      ],
+      "id": "9732ba25-2e33-40ec-9295-55b55fd00a95",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -280,
+        -280
+      ],
+      "id": "5452bb1d-a16f-4855-856c-a7b75e0d236d",
+      "name": "When chat message received",
+      "webhookId": "e9a33c5a-6b79-4bd4-b75a-5f984d28e25e"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.5,
+      "position": [
+        -60,
+        -280
+      ],
+      "id": "794f8460-85de-44b9-8c79-772a5c8e1c52",
+      "name": "Question and Answer Chain"
+    },
+    {
+      "parameters": {
+        "model": "deepseek-r1:7b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        -40
+      ],
+      "id": "97cffb46-e3ea-4856-b8a6-dc1f2c864650",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "yNxd2gafsoT3jtQP",
+          "name": "http://ollama.anything-llm.svc:11434"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "typeVersion": 1,
+      "position": [
+        80,
+        -60
+      ],
+      "id": "f81a8fa5-47c4-4938-ae08-e50d022e61cd",
+      "name": "Vector Store Retriever"
+    },
+    {
+      "parameters": {
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "nomic_text_collection",
+          "mode": "list",
+          "cachedResultName": "nomic_text_collection"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1.1,
+      "position": [
+        20,
+        160
+      ],
+      "id": "3a84211b-e70e-4c5c-9555-ce03f41d1368",
+      "name": "Qdrant Vector Store1",
+      "credentials": {
+        "qdrantApi": {
+          "id": "8vlzFhUKNuJyRlus",
+          "name": "http://qdrant-headless.qdrant.svc:6333"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "nomic-embed-text:latest"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
+      "typeVersion": 1,
+      "position": [
+        40,
+        340
+      ],
+      "id": "418e8678-6e24-4e3c-a46a-7087ff7a5f64",
+      "name": "Embeddings Ollama1",
+      "credentials": {
+        "ollamaApi": {
+          "id": "yNxd2gafsoT3jtQP",
+          "name": "http://ollama.anything-llm.svc:11434"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-21T07:56:40.405Z",
+  "versionId": "2ce609b2-e96f-4260-b74d-e5ac714a2f2b"
+}
