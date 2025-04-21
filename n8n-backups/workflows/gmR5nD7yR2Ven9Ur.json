@@ -113,8 +113,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -1200,
-        -300
+        -1340,
+        -360
       ],
       "id": "ce6ec89a-70cc-4c3d-bef4-fa9afcf2142e",
       "name": "When clicking ‘Test workflow’"
@@ -124,17 +124,17 @@
         "mode": "insert",
         "qdrantCollection": {
           "__rl": true,
-          "value": "nomic_text_collection",
+          "value": "github_jo3",
           "mode": "list",
-          "cachedResultName": "nomic_text_collection"
+          "cachedResultName": "github_jo3"
         },
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
       "typeVersion": 1.1,
       "position": [
-        -980,
-        -300
+        -1120,
+        -360
       ],
       "id": "03d4cb86-fb73-4321-b0c7-f9682386e0a7",
       "name": "Qdrant Vector Store",
@@ -152,8 +152,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
       "typeVersion": 1,
       "position": [
-        -1100,
-        -60
+        -1180,
+        -180
       ],
       "id": "ea52b7c6-b7c0-496e-8307-5558e18a9700",
       "name": "Embeddings Ollama",
@@ -172,8 +172,8 @@
       "type": "@n8n/n8n-nodes-langchain.documentGithubLoader",
       "typeVersion": 1,
       "position": [
-        -880,
-        -100
+        -1020,
+        -180
       ],
       "id": "55558fb4-6e3d-48a7-9f85-948c300e96f2",
       "name": "GitHub Document Loader",
@@ -186,14 +186,14 @@
     },
     {
       "parameters": {
-        "chunkOverlap": 200,
+        "chunkOverlap": 100,
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "typeVersion": 1,
       "position": [
-        -800,
-        120
+        -840,
+        -20
       ],
       "id": "9732ba25-2e33-40ec-9295-55b55fd00a95",
       "name": "Recursive Character Text Splitter"
@@ -205,8 +205,8 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.1,
       "position": [
-        -280,
-        -280
+        -580,
+        -360
       ],
       "id": "5452bb1d-a16f-4855-856c-a7b75e0d236d",
       "name": "When chat message received",
@@ -219,8 +219,8 @@
       "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
       "typeVersion": 1.5,
       "position": [
-        -60,
-        -280
+        -360,
+        -360
       ],
       "id": "794f8460-85de-44b9-8c79-772a5c8e1c52",
       "name": "Question and Answer Chain"
@@ -233,8 +233,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
       "typeVersion": 1,
       "position": [
-        -140,
-        -40
+        -420,
+        -180
       ],
       "id": "97cffb46-e3ea-4856-b8a6-dc1f2c864650",
       "name": "Ollama Chat Model",
@@ -250,8 +250,8 @@
       "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
       "typeVersion": 1,
       "position": [
-        80,
-        -60
+        -300,
+        -180
       ],
       "id": "f81a8fa5-47c4-4938-ae08-e50d022e61cd",
       "name": "Vector Store Retriever"
@@ -260,17 +260,17 @@
       "parameters": {
         "qdrantCollection": {
           "__rl": true,
-          "value": "nomic_text_collection",
+          "value": "github_jo3",
           "mode": "list",
-          "cachedResultName": "nomic_text_collection"
+          "cachedResultName": "github_jo3"
         },
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
       "typeVersion": 1.1,
       "position": [
-        20,
-        160
+        -380,
+        -20
       ],
       "id": "3a84211b-e70e-4c5c-9555-ce03f41d1368",
       "name": "Qdrant Vector Store1",
@@ -288,8 +288,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
       "typeVersion": 1,
       "position": [
-        40,
-        340
+        -380,
+        140
       ],
       "id": "418e8678-6e24-4e3c-a46a-7087ff7a5f64",
       "name": "Embeddings Ollama1",
@@ -299,6 +299,33 @@
           "name": "http://ollama.anything-llm.svc:11434"
         }
       }
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "http://192.168.0.188:6333/collections/github_jo3",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api-key",
+              "value": "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"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"vectors\": {\n    \"size\": 768,\n    \"distance\": \"Cosine\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -900,
+        -680
+      ],
+      "id": "c85e5c12-a218-4010-b378-9008aeb8facf",
+      "name": "HTTP Request"
     }
   ],
   "pinData": {},
@@ -308,6 +335,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-21T07:56:40.405Z",
-  "versionId": "2ce609b2-e96f-4260-b74d-e5ac714a2f2b"
+  "updatedAt": "2025-04-21T08:37:23.758Z",
+  "versionId": "a9e2d0c7-917f-4a71-90a8-5713e8420de9"
 }
