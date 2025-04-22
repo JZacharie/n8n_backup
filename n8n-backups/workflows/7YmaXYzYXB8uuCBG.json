@@ -299,11 +299,13 @@
       }
     },
     {
-      "parameters": {},
+      "parameters": {
+        "topK": 20
+      },
       "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
       "typeVersion": 1,
       "position": [
-        -640,
+        -600,
         -400
       ],
       "id": "ebedd889-79c4-419e-92f8-cb00995323f0",
@@ -493,6 +495,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-22T04:57:58.240Z",
-  "versionId": "4fc54fef-8768-43d2-a354-b96bb05c8d52"
+  "updatedAt": "2025-04-22T05:06:29.165Z",
+  "versionId": "8e05fcfd-b732-499d-856c-a69e0395fa3f"
 }
