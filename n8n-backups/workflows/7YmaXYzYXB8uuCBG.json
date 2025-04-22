@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "Qdrant Vector Store",
+            "node": "HTTP Request1",
             "type": "main",
             "index": 0
           }
@@ -99,6 +99,78 @@
           }
         ]
       ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Question and Answer Chain": {
+      "main": [
+        []
+      ]
+    },
+    "Qdrant Vector Store": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-04-21T08:39:50.991Z",
@@ -113,8 +185,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -1340,
-        -360
+        -1300,
+        -880
       ],
       "id": "a7e54ff3-3df0-4ce9-9b32-fe133f8f7c9f",
       "name": "When clicking ‘Test workflow’"
@@ -128,13 +200,14 @@
           "mode": "list",
           "cachedResultName": "pdf"
         },
+        "embeddingBatchSize": 2000,
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
       "typeVersion": 1.1,
       "position": [
-        -1120,
-        -360
+        240,
+        -860
       ],
       "id": "96c299e7-9bd9-4682-aa25-3edb405ad443",
       "name": "Qdrant Vector Store",
@@ -152,8 +225,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
       "typeVersion": 1,
       "position": [
-        -1180,
-        -180
+        160,
+        -600
       ],
       "id": "c788a9d4-77d4-405c-8983-45a272fb544e",
       "name": "Embeddings Ollama",
@@ -172,8 +245,8 @@
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "typeVersion": 1,
       "position": [
-        -1000,
-        80
+        360,
+        -460
       ],
       "id": "262ec85d-adb4-4015-8727-004efc025961",
       "name": "Recursive Character Text Splitter"
@@ -185,8 +258,8 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.1,
       "position": [
-        -580,
-        -360
+        -920,
+        -580
       ],
       "id": "5976d3fa-3fa4-4829-8629-67ccb54fc577",
       "name": "When chat message received",
@@ -199,8 +272,8 @@
       "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
       "typeVersion": 1.5,
       "position": [
-        -360,
-        -360
+        -700,
+        -580
       ],
       "id": "b565862b-105a-4f25-837c-54c2a24cc59b",
       "name": "Question and Answer Chain"
@@ -213,8 +286,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
       "typeVersion": 1,
       "position": [
-        -420,
-        -180
+        -760,
+        -400
       ],
       "id": "f8c2e7fc-2e00-43e7-94cf-e990cf794491",
       "name": "Ollama Chat Model",
@@ -230,8 +303,8 @@
       "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
       "typeVersion": 1,
       "position": [
-        -300,
-        -180
+        -640,
+        -400
       ],
       "id": "ebedd889-79c4-419e-92f8-cb00995323f0",
       "name": "Vector Store Retriever"
@@ -249,8 +322,8 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
       "typeVersion": 1.1,
       "position": [
-        -380,
-        -20
+        -720,
+        -240
       ],
       "id": "5f1baa75-a88d-4fe3-bc44-8c58b8a644c0",
       "name": "Qdrant Vector Store1",
@@ -268,8 +341,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
       "typeVersion": 1,
       "position": [
-        -380,
-        140
+        -720,
+        -80
       ],
       "id": "1e43264b-8906-4a19-b5f8-262a5d8e1a99",
       "name": "Embeddings Ollama1",
@@ -301,8 +374,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -900,
-        -680
+        -960,
+        -1080
       ],
       "id": "25efdc43-abf4-45b6-a02c-d4bf86f6cd3a",
       "name": "HTTP Request"
@@ -310,17 +383,107 @@
     {
       "parameters": {
         "dataType": "binary",
-        "loader": "pdfLoader",
+        "binaryMode": "specificField",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1,
       "position": [
-        -980,
-        -140
+        340,
+        -640
       ],
       "id": "46befde7-e04e-47fe-abf4-d863803f2db1",
       "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "url": "https://paperless.p.zacharie.org/api/documents/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Token c5515fdd12b693f0a76f7b95f683e62588c53d86"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -960,
+        -880
+      ],
+      "id": "79195cf8-a7dc-4c77-b040-6fff08b52340",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Accéder à la réponse JSON du nœud HTTP Request\nconst documents = items[0].json.all;  // Utiliser 'all' pour récupérer les IDs\n\n// Retourner les IDs dans le format attendu par n8n\nreturn documents.map(id => {\n  return {\n    json: {\n      id: id\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -680,
+        -880
+      ],
+      "id": "2323fcf0-0bc3-49b9-a922-401e518ff98e",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "url": "=https://paperless.p.zacharie.org/api/documents/{{ $json.id }}/download/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Token c5515fdd12b693f0a76f7b95f683e62588c53d86"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        20,
+        -860
+      ],
+      "id": "bf1b9b69-79cc-43ba-9129-34c809cf5cbf",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -440,
+        -880
+      ],
+      "id": "3fb1cd59-9364-4345-b636-45463f6c9517",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -180,
+        -860
+      ],
+      "id": "f289dd91-f2bb-4ab8-b455-cd1c7831f6f2",
+      "name": "Wait",
+      "webhookId": "fef2a9e8-4745-4c7d-8495-78c1d26ae559"
     }
   ],
   "pinData": {},
@@ -330,6 +493,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-21T08:41:01.259Z",
-  "versionId": "a1c7ba49-43a1-4c49-a064-72d1f3440800"
+  "updatedAt": "2025-04-22T04:57:58.240Z",
+  "versionId": "4fc54fef-8768-43d2-a354-b96bb05c8d52"
 }
