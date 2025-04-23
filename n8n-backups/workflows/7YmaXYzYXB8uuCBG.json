@@ -196,9 +196,9 @@
         "mode": "insert",
         "qdrantCollection": {
           "__rl": true,
-          "value": "pdf",
+          "value": "pdf2",
           "mode": "list",
-          "cachedResultName": "pdf"
+          "cachedResultName": "pdf2"
         },
         "embeddingBatchSize": 2000,
         "options": {}
@@ -358,7 +358,7 @@
     {
       "parameters": {
         "method": "PUT",
-        "url": "http://192.168.0.188:6333/collections/pdf",
+        "url": "http://192.168.0.188:6333/collections/pdf2",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -386,6 +386,7 @@
       "parameters": {
         "dataType": "binary",
         "binaryMode": "specificField",
+        "loader": "pdfLoader",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
@@ -495,6 +496,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-22T05:06:29.165Z",
-  "versionId": "8e05fcfd-b732-499d-856c-a69e0395fa3f"
+  "updatedAt": "2025-04-23T05:39:29.525Z",
+  "versionId": "d0e8b85b-2492-4923-9a8d-e6bf9fcf2a7b"
 }
