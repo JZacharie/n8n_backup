@@ -250,8 +250,8 @@
       "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
       "typeVersion": 1,
       "position": [
-        -300,
-        -180
+        -140,
+        -160
       ],
       "id": "f81a8fa5-47c4-4938-ae08-e50d022e61cd",
       "name": "Vector Store Retriever"
@@ -269,8 +269,8 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
       "typeVersion": 1.1,
       "position": [
-        -380,
-        -20
+        -220,
+        0
       ],
       "id": "3a84211b-e70e-4c5c-9555-ce03f41d1368",
       "name": "Qdrant Vector Store1",
@@ -288,7 +288,7 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
       "typeVersion": 1,
       "position": [
-        -380,
+        -180,
         140
       ],
       "id": "418e8678-6e24-4e3c-a46a-7087ff7a5f64",
@@ -315,14 +315,14 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "{\n  \"vectors\": {\n    \"size\": 768,\n    \"distance\": \"Cosine\"\n  }\n}",
+        "jsonBody": "{\n  \"vectors\": {\n    \"size\": 768,\n    \"distance\": \"Cosine\"\n  },\n    \"shard_number\": 3,\n    \"replication_factor\": 1\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -900,
-        -680
+        -940,
+        -660
       ],
       "id": "c85e5c12-a218-4010-b378-9008aeb8facf",
       "name": "HTTP Request"
@@ -335,6 +335,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-21T08:37:23.758Z",
-  "versionId": "a9e2d0c7-917f-4a71-90a8-5713e8420de9"
+  "updatedAt": "2025-04-24T05:59:26.769Z",
+  "versionId": "f68dd33e-9486-4ec9-b5a9-21878f9608ff"
 }
