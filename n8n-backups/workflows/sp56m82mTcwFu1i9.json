@@ -60,7 +60,7 @@
   "createdAt": "2025-04-22T04:40:31.869Z",
   "id": "sp56m82mTcwFu1i9",
   "meta": null,
-  "name": "My Sub-Workflow 1",
+  "name": "RAG Sub",
   "nodes": [
     {
       "parameters": {
@@ -180,6 +180,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-22T04:44:31.259Z",
-  "versionId": "c2dec8ce-e46e-460d-be30-884e837d8bf9"
+  "updatedAt": "2025-04-29T05:53:13.586Z",
+  "versionId": "7e8ff4f6-46af-406a-b32a-1ee799be9467"
 }
