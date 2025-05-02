@@ -160,7 +160,7 @@
       "credentials": {
         "ollamaApi": {
           "id": "yNxd2gafsoT3jtQP",
-          "name": "http://ollama.anything-llm.svc:11434"
+          "name": "2060 8Gb"
         }
       }
     },
@@ -227,7 +227,7 @@
     },
     {
       "parameters": {
-        "model": "deepseek-r1:7b",
+        "model": "phi4-reasoning:14b",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
@@ -240,8 +240,8 @@
       "name": "Ollama Chat Model",
       "credentials": {
         "ollamaApi": {
-          "id": "yNxd2gafsoT3jtQP",
-          "name": "http://ollama.anything-llm.svc:11434"
+          "id": "BrmAQUYuX864p0gx",
+          "name": "4060 16Gb"
         }
       }
     },
@@ -296,7 +296,7 @@
       "credentials": {
         "ollamaApi": {
           "id": "yNxd2gafsoT3jtQP",
-          "name": "http://ollama.anything-llm.svc:11434"
+          "name": "2060 8Gb"
         }
       }
     },
@@ -333,8 +333,15 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2025-03-07T18:05:05.808Z",
+      "updatedAt": "2025-03-07T18:05:05.808Z",
+      "id": "e9JN5uNYc4FeMhgb",
+      "name": "Working:True"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2025-04-29T05:51:35.359Z",
-  "versionId": "f68dd33e-9486-4ec9-b5a9-21878f9608ff"
+  "updatedAt": "2025-05-02T04:21:21.418Z",
+  "versionId": "36b2c17d-de0f-438e-9ede-f873019d9354"
 }
