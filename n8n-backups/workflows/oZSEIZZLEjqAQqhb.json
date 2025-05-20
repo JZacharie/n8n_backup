@@ -184,6 +184,7 @@
   },
   "createdAt": "2025-03-08T08:00:43.080Z",
   "id": "oZSEIZZLEjqAQqhb",
+  "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
