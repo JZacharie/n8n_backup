@@ -1,0 +1,78 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-22T04:13:47.881Z",
+  "id": "2RE6J2clfwUKUgoF",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 10",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "353789f9-9be0-4f6c-bbfc-a1edfc9e30ee",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openobserve.ai/api/joseph_organization_1118/default/_json",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "authorization",
+              "value": "Basic am9zZXBoQHphY2hhcmllLm9yZzpmN0ltSjJWMDZBNDlsODVMMzFPVQ=="
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "[{\"level\":\"info\",\"job\":\"test\",\"log\":\"test message for openobserve\"}]"
+            }
+          ]
+        },
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "68724d8b-1d09-40d5-8a4e-49396af56c1c",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-22T04:13:47.881Z",
+  "versionId": "2766d221-00a3-4570-a59e-026bb299d719"
+}
